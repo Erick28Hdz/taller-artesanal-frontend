@@ -9,6 +9,8 @@ import Login from "./pages/modulo-registro/Login";
 import Register from "./pages/modulo-registro/Register";
 import Remember from "./pages/modulo-registro/Remember";
 
+/*Modulo Usuarios*/
+import Perfil from "./pages/modulo-usuario/perfil-user";
 
 /*Layouts predeterminados*/
 import LoginLayout from "./layouts/LoginLayout";
@@ -57,6 +59,14 @@ const App = () => {
                     element={
                         <LoginLayout>
                             <Remember />
+                        </LoginLayout>
+                    }
+                />
+                <Route
+                    path="/Perfil"
+                    element={
+                        <LoginLayout>
+                            <Login />
                         </LoginLayout>
                     }
                 />
