@@ -1,0 +1,129 @@
+@import url("../style.css");
+
+/* From Uiverse.io by micaelgomestavares */
+.form-registe {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: var(--color-cuaternario2);
+  padding: 30px;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 20px;
+  border: 2px solid var(--color-primario);
+  filter: drop-shadow(0px 0px 5px var(--color-cuaternario));
+}
+
+.title {
+  font-size: 28px;
+  color: var(--color-primario);
+  font-weight: 600;
+  letter-spacing: 0px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0px 0px 5px var(--color-terciario));
+}
+
+.title::before,
+.title::after {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  left: 0px;
+  background-color: var(--color-terciario);
+}
+
+.title::before {
+  width: 18px;
+  height: 18px;
+  background-color: var(--color-primario);
+}
+
+.title::after {
+  width: 18px;
+  height: 18px;
+  animation: pulse 1s linear infinite;
+}
+
+.seccion-registro {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.seccion-registro label {
+  color: var(--color-cuaternario2);
+}
+
+.button-submit {
+    margin: 20px 0 10px 0;
+    background-color: var(--color-primario);
+    border: none;
+    color: var(--color-cuaternario);
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 10px;
+    height: 50px;
+    width: 100%;
+    cursor: pointer;
+  }
+  
+  .button-submit p{
+    color: var(--color-cuaternario2);
+    filter: drop-shadow(0px 0px 5px var(--color-terciario));
+    margin: 0;
+  }
+
+  .modal-content{
+    border: 2px solid var(--color-primario);
+    filter: drop-shadow(0px 0px 5px var(--color-secundario));
+  }
+
+  .modal-header{
+    font-family: var(--letra-titulos);
+  }
+
+  .form-label{
+    font-family: var(--letra-parrafos);
+  }
+
+  .modal-footer{
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
+ .form-control{
+    border: 2px solid var(--color-primario);
+  }
+
+  .btn-secondary{
+    background-color: var(--color-secundario);
+  }
+
+  .btn-primary{
+    background-color: var(--color-primario);
+  }
+
+  .btn:hover{
+    background-color: var(--color-cuaternario2);
+  }
+
+  .btn-close{
+    background-color: var(--color-terciario);
+    opacity: 1;
+  }
+@keyframes pulse {
+  from {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+
+  to {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}

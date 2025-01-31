@@ -1,0 +1,248 @@
+@import url('../style.css');
+
+/*Seción principal*/
+.seccion-login{
+    background-color: var(--color-terciario);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/**Titúlos y logo**/
+.titulo-login{
+  text-align: center;
+  margin-bottom: 20px;
+  height: auto;
+}
+
+.titulo-login img{
+    width: 150px;
+    height: auto;
+    filter: drop-shadow(0px 0px 5px var(--color-primario));
+    transition: transform 1.5s ease;
+}
+
+.titulo-login img:hover {
+    transform: rotate(360deg);
+}
+
+.titulo-login h1{
+    color: var(--color-primario);
+    font-size: 40px;
+    position: relative;
+    bottom: 50px;
+    filter: drop-shadow(0px 0px 5px var(--color-primario));
+    text-shadow: 0px 1px 1px var(--color-cuaternario2);
+    -webkit-text-stroke: 0.5px var(--color-cuaternario2);
+}
+
+.titulo-login h2{
+    font-size: 60px;
+    font-weight: 700;
+    position: relative;
+    bottom: 30px;
+    color: var(--color-secundario);
+    filter: drop-shadow(0px 0px 5px var(--color-primario));
+    text-shadow: 0px 1px 1px var(--color-primario);
+}
+
+
+/**Formulario de ingreso**/
+.form-login .title {
+  font-size: 28px;
+  color: var(--color-primario);
+  font-weight: 600;
+  letter-spacing: 0px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0px 0px 5px var(--color-terciario));
+}
+
+.form-login .title::before,.form-login .title::after {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  left: 0px;
+  background-color: var(--color-terciario);
+}
+
+.form-login .title::before {
+  width: 18px;
+  height: 18px;
+  background-color: var(--color-primario);
+}
+
+.form-login .title::after {
+  width: 18px;
+  height: 18px;
+  animation: pulse 1s linear infinite;
+}
+
+.form-login {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: var(--color-cuaternario2);
+    padding: 30px;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 20px;
+    border: 2px solid var(--color-primario);
+    filter: drop-shadow(0px 0px 5px var(--color-cuaternario));
+  }
+  
+  .form-login img{
+    width: 30px;
+    height: auto;
+  }
+
+  .input::placeholder {
+    font-family: var(--letra-textos);
+    color: var(--color-primario);
+    position: relative;
+    left: 5px;
+  }
+  
+  .form-login button {
+    align-self: flex-end;
+  }
+  
+  .flex-column > label {
+    color: var(--color-primario);
+    font-weight: 600;
+    font-size: 16px;
+  }
+  
+  .inputForm {
+    border: 1.5px solid var(--color-terciario);
+    border-radius: 10px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    transition: 0.2s ease-in-out;
+    
+  }
+  
+  .input {
+    margin-left: 10px;
+    border-radius: 10px;
+    border: none;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .input:focus {
+    outline: none;
+  }
+  
+  .inputForm:focus-within {
+    border: 2px solid var(--color-terciario);
+  }
+  
+  .flex-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    justify-content: space-between;
+  }
+  
+  .flex-row > div > label {
+    font-size: 15px;
+    color: var(--color-primario);
+    font-weight: 400;
+    margin-left: 5px;
+  }
+  
+  .span {
+    font-size: 14px;
+    margin-left: 5px;
+    color: var(--color-terciario);
+    font-family: var(--letra-subtitulo1);
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .button-submit {
+    margin: 20px 0 10px 0;
+    background-color: var(--color-primario);
+    border: none;
+    color: var(--color-cuaternario);
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 10px;
+    height: 50px;
+    width: 100%;
+    cursor: pointer;
+  }
+  
+  .button-submit p{
+    color: var(--color-cuaternario2);
+    filter: drop-shadow(0px 0px 5px var(--color-terciario));
+    margin: 0;
+  }
+
+  .p {
+    text-align: center;
+    color: var(--color-primario);
+    font-size: 14px;
+    margin: 0;
+    text-decoration: none;
+  }
+  
+  .btn {
+    margin-top: 10px;
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    gap: 10px;
+    border: 2px solid var(--color-primario);
+    background-color: var(--color-cuaternario);
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    font-weight: 600;
+  }
+  
+  .btn:hover {
+    border: 2px solid var(--color-terciario);
+    color: var(--color-primario);
+    font-weight: 600;
+  }
+
+  /* Responsive Design */
+@media (max-width: 768px) {
+  .titulo-login h1 {
+      font-size: 1.5rem;
+      bottom: 45px;
+  }
+
+  .titulo-login h2 {
+      font-size: 40px;
+  }
+
+  .form-login {
+      padding: 20px;
+      width: 90%;
+  }
+
+  .inputForm {
+      gap: 5px;
+  }
+
+  .flex-row{
+    display: inline;
+  }
+}

@@ -1,0 +1,368 @@
+@import url('../../../css/style.css');
+
+/*Principal*/
+.section-hero{
+    width: 100%;
+    background-color: var(--color-primario);
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+
+/**Sección 1 titúlo y exploración**/
+.seccion1hero{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/***información***/
+.carrusel{
+    width: 100%;
+}
+
+.carrusel img{
+    margin: 15px auto;
+    width: auto;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    border: 1px solid var(--color-terciario);
+    border-radius: 10px;
+    box-shadow: 
+    2px 0px 10px var(--color-terciario), /* Sombra exterior */
+    -6px 0px 10px var(--color-secundario)
+}
+
+.carousel-control-next-icon, .carousel-control-prev-icon{
+    width: unset;
+}
+
+.carousel-indicators{
+    all: unset;
+    display: none;
+}
+.vistas{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;   
+}
+
+.texto-hero{
+    width: 70%;
+    text-align: end;
+    display: flex; 
+}
+
+.texto-hero p{
+    margin: 0;
+    display: flex;
+    align-items: center;
+    font-family: var(--letra-enlaces);
+    font-size: 14px;
+    color: var(--color-terciario);
+}
+
+.boton-hero{
+    width: 30%;
+    display: flex;
+    justify-content: center;
+}
+
+.button-hero  {
+    width: 110px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    background-color: var(--color-secundario);
+    border-radius: 30px;
+    color: var(--color-primario);
+    font-family: var(--letra-botones);
+    font-weight: 600;
+    border: 2px solid var(--color-primario);
+    position: relative;
+    cursor: pointer;
+    transition-duration: .2s;
+    box-shadow: -5px 5px 10px var(--color-secundario);
+    padding-left: 8px;
+    transition-duration: .5s;
+  }
+  
+  .button-hero:focus {
+    outline: 2px solid var(--color-terciario);
+}
+  .svgIcon {
+    width: 30px;
+    height: auto;
+    transition-duration: 1.5s;
+  }
+  
+  .bell path {
+    fill: rgb(19, 19, 19);
+  }
+  
+  .button-hero:hover {
+    background-color: var(--color-terciario);
+    transition-duration: .5s;
+  }
+  
+  .button-hero:active {
+    transform: scale(0.97);
+    transition-duration: .2s;
+  }
+  
+  .button-hero:hover .svgIcon {
+    transform: rotate(250deg);
+    transition-duration: 1.5s;
+  }
+
+/** Sección 2 Logo y Títulos **/
+.seccion2hero {
+    width: 60%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center; 
+}
+
+/* Logo */
+.logo {
+    padding: 20px 0;
+    width: 250px;
+    filter: drop-shadow(0px 0px 30px var(--color-secundario));
+    transition: transform 2.5s ease, width 0.5s ease;
+}
+
+.logo:hover {
+    transform: rotate(360deg);
+}
+
+/* Títulos principales */
+.titulo {
+    filter: drop-shadow(0px 0px 10px var(--color-terciario));
+    position: relative;
+    left: 40px;
+    bottom: 60px;
+    z-index: 1;
+    transform: rotate(-5deg);
+}
+
+/* Título del proyecto */
+.titulo1 {
+    font-size: 40px;
+    font-family: var(--letra-enlaces);
+    margin-top: 20px;
+    margin-bottom: 0;
+    text-align: center;
+    position: relative;
+    top: 25px;
+    right: 40px;
+}
+
+/* Arte y gestión */
+.arte {
+    color: var(--color-secundario);
+    -webkit-text-stroke: 0.5px rgb(255, 255, 255);
+    text-shadow: 1px 0px 10px var(--color-primario);
+}
+
+.gestion {
+    color: var(--color-primario);
+    -webkit-text-stroke: 0.5px rgb(255, 255, 255);
+    text-shadow: 1px 0px 10px var(--color-primario);
+}
+
+/* Título taller artesanal */
+.titulo2 {
+    font-size: 50px;
+    font-family: var(--letra-titulos);
+    margin: 0;
+    text-align: end;
+}
+
+.taller, .artesanal {
+    -webkit-text-stroke: 0.5px rgb(255, 255, 255);
+    text-shadow: 1px 0px 10px var(--color-secundario);
+    text-decoration: underline;
+    text-decoration-color: var(--color-primario);
+}
+
+.taller {
+    color: var(--color-secundario);
+}
+
+.artesanal {
+    color: var(--color-primario);
+}
+
+/*Responsive del Hero*/
+
+  
+  /* Media Queries */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .vistas {
+        flex-wrap: wrap;
+        gap: 20px; 
+        justify-content: center;
+    }
+
+    .seccion2hero {
+        width: 80%;
+        flex-direction: column;
+        gap: 20px; /* Separación entre elementos */
+    }
+
+    .logo {
+        width: 200px;
+    }
+
+    .titulo {
+        left: 20px;
+        top: 10px;
+    }
+
+    .titulo1 {
+        font-size: 35px;
+        top: 20px;
+        right: 20px;
+    }
+
+    .titulo2 {
+        font-size: 40px;
+        text-align: center;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    section {
+        flex-direction: column;
+        padding: 5px;
+        align-items: center;
+    }
+    .seccion1hero, .seccion2hero {
+        width: 100%;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .seccion1hero{
+        order: 2;
+    }
+
+    .seccion2hero{
+        order: 1;
+    }
+    .vistas {
+        flex-direction: column; 
+        align-items: center;
+        gap: 15px;
+    }
+  
+    .texto-hero p {
+      font-size: 1rem;
+      padding: 0 10px;
+    }
+    
+    .seccion2hero {
+        width: 90%;
+        gap: 15px;
+    }
+
+    .logo {
+        width: 150px;
+    }
+
+    .titulo {
+        left: 10px;
+        top: 5px;
+    }
+
+    .titulo1 {
+        font-size: 30px;
+        right: 10px;
+    }
+
+    .titulo2 {
+        font-size: 35px;
+        text-align: center;
+    }
+
+    .texto-hero p {
+        font-size: 0.9rem;
+        text-align: center;
+        margin: 5px;
+    }
+  }
+  
+  @media (min-width: 320px) and (max-width: 767px) {
+    section {
+        flex-direction: column;
+        padding: 5px;
+        align-items: center;
+    }
+
+    .texto-hero p {
+      font-size: 0.9rem;
+    }
+    
+    .vistas {
+        gap: 10px;
+        padding: 0 10px;
+        flex-direction: column;
+        align-items: center; 
+    }
+    
+    .seccion2hero {
+        order: 1;
+    }
+
+    .seccion1hero{
+        order: 2;
+        width: 100%;
+    }
+
+    .seccion2hero{
+        order: 1;
+        flex-direction: column;
+    }
+    .logo {
+        width: 120px;
+    }
+
+    .titulo {
+        left: 5px;
+        top: 0px;
+    }
+
+    .titulo1 {
+        font-size: 25px;
+        top: 10px;
+        right: 0px;
+    }
+
+    .titulo2 {
+        font-size: 30px;
+        text-align: center;
+    }
+
+    .arte, .gestion {
+        font-size: 20px;
+    }
+
+    .taller, .artesanal {
+        font-size: 25px;
+    }
+
+    .texto-hero p {
+        font-size: 0.9rem;
+        text-align: center;
+        margin: 5px;
+    }
+  }
+  

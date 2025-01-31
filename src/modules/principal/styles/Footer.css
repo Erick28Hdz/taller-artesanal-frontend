@@ -1,0 +1,350 @@
+@import url('../../../css/style.css');
+
+/*Secciones principales*/
+footer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: var(--color-primario);
+  padding: 20px;
+}
+
+.seccion1, .seccion2{
+  display: flex;
+  max-width: 100%;
+  justify-content: space-around;
+}
+
+.seccion1 h4{
+  font-size: 20px;
+  color: var(--color-secundario);
+}
+
+.seccion1 p, section{
+  color: var(--color-cuaternario);
+  text-align: center;
+  font-family: var(--letra-parrafos);
+}
+
+.seccion2{
+  margin: 0;
+  font-family: var(--letra-parrafos);
+  font-size: 14px;
+  padding-bottom: 5px;
+  margin-top: 20px;
+}
+
+.seccion2 p{
+  margin: 0;
+}
+.seccio-info, .seccio-atecli, .seccion-metpag, .seccion-redsoc{
+  width: 25%;
+}
+/**Sección de información**/
+.seccio-info{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 25%;
+}
+
+.seccio-info p{
+ text-align:inherit;
+}
+
+.seccio-info h4{
+  margin-bottom: 10px;
+}
+
+.logos-tienda {
+  display: flex;
+}
+
+.logos-tienda img {
+  width: 50px;
+  height: 50px;
+  margin-left: 10px;
+  margin-right: 10px;
+  transition: transform 1.5s ease;
+}
+
+.logos-tienda img:hover {
+  transform: rotate(360deg);
+}
+
+.Titulo-principal{
+  margin-top: 10px;
+  color: var(--color-secundario);
+}
+
+.Titulo-principal h1{
+  font-size: 30px;
+}
+/**Sección de atención al cliente**/
+.seccio-atecli{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.seccio-atecli h4{
+  font-size: 20px;
+  margin: 0 auto;
+  color: var(--color-secundario);  
+}
+
+.form-footer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  background-color: var(--color-secundario);
+  padding: 15px;
+  border-radius: 5px;
+  
+}
+
+.form-footer input {
+  outline: 0;
+  background-color: var(--color-cuaternario);
+  border: 2px solid var(--color-primario);
+  padding: 8px 14px;
+  border-radius: 8px;
+  width: 100%;
+  height: 50px;
+}
+
+.form-footer textarea {
+  background-color: var(--color-cuaternario);
+  border-radius: 8px;
+  height: 100px;
+  width: 100%;
+  resize: none;
+  outline: 0;
+  padding: 8px 14px;
+  border: 2px solid var(--color-primario);
+}
+
+input::placeholder, textarea::placeholder  {
+  color: var(--color-secundario);
+  font-family: var(--letra-textos);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.form-footer button {
+  align-self: flex-end;
+  padding: 5px;
+  outline: 0;
+  border: 0;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: 400;
+  background-color: var(--color-terciario);
+  color: var(--color-cuaternario);
+  cursor: pointer;
+  font-family: var(--letra-botones);
+}
+
+/**Sección de metodos de pago**/
+.seccion-metpag{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 25%;
+  justify-content: flex-start;
+}
+
+.logos-pagos{
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.logos-pagos img{
+  width: 50px;
+  height: 50px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.textos-footer p{
+  margin: 0;
+  text-align: start;
+}
+/**Sección de redes sociales**/
+.seccion-redsoc{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 25%;
+  justify-content: flex-start;
+}
+
+.logos-redsoc{
+  display: flex;
+  width: 110%;
+  margin-bottom: 15px;
+}
+
+.button {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    border: none;
+    background: linear-gradient(120deg, #833ab4, #fd1d1d, #fcb045);
+    position: relative;
+    z-index: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+    transition: 0.1s;
+  }
+  
+  .button img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    z-index: 9;
+  }
+
+  .button.facebook {
+    background: linear-gradient(45deg, #1877F2, #3b5998);
+  }
+
+  .button.instagram {
+    background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF, #515BD4);
+  }
+
+  .button.whatsapp {
+    background: linear-gradient(45deg, #25D366, #075E54);
+  }
+    
+  .button.youtube {
+    background: linear-gradient(45deg, #FF0000, #D31A1A);
+  }
+  
+  .button.tiktok {
+    background: linear-gradient(45deg, #FE2C55, #25F4EE);
+  }
+  
+  .button:active {
+    transform: scale(0.85);
+  }
+  
+  .button::before {
+    content: "";
+    position: absolute;
+    width: 47px;
+    height: 47px;
+    background-color: var(--color-secundario);
+    border-radius: 50px;
+    z-index: -1;
+    transition: 0.4s;
+  }
+  
+  .button:hover::before {
+    width: 0px;
+    height: 0px;
+  }
+
+  /**Responsive del footer*/
+  footer .seccion1 {
+    display: flex;
+    flex-wrap: wrap; /* Permite que las secciones se ajusten */
+    justify-content: space-between;
+    gap: 10px;
+  }
+  
+  footer .seccio-info,
+  footer .seccio-atecli,
+  footer .seccion-redsoc,
+  footer .seccion-metpag {
+    flex: 1 1 300px;
+    box-sizing: border-box;
+  }
+  
+  footer .logos-tienda,
+  footer .logos-redsoc,
+  footer .logos-pagos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: center;
+  }
+
+  footer .logo-ag,
+  footer .logo-pag,
+  footer .logos-redsoc button {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  footer .logos-redsoc button img,
+  footer .logo-ag img,
+  footer .logo-pag img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  footer button {
+    width: 100%;
+  }
+  
+  footer button:hover {
+    background-color: var(--color-terciario);
+  }
+  
+  footer .seccion2 {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #ccc;
+    font-size: 0.875rem;
+  }
+  
+  /* Media Queries para Responsividad */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    footer .seccion1 {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    footer .seccion1 > section {
+      max-width: 100%; /* Ocupa el 100% del ancho */
+      text-align: center;
+    }
+  
+    footer .logos-tienda,
+    footer .logos-redsoc,
+    footer .logos-pagos {
+      justify-content: center;
+    }
+  
+    footer .textos-footer {
+      text-align: center;
+    }
+  }
+  
+  @media (min-width: 320px) and (max-width: 768px) {
+    footer h4 {
+      font-size: 1.25rem;
+    }
+  
+    footer .logos-redsoc button {
+      width: 40px;
+      height: 40px;
+    }
+  
+    footer input,
+    footer textarea,
+    footer button {
+      font-size: 0.875rem;
+    }
+  }
+  

@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Maitree:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wght@8..144,200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+:root{
+    --color-primario: #000000;   
+    --color-secundario: #3E3636; 
+    --color-terciario: #D72323;
+    --color-cuaternario: #F5EDED;
+    /* Fuentes */
+    --letra-titulos: 'Unbounded', sans-serif;
+    --letra-subtitulo1: 'Maitree', serif;
+    --letra-subtitulos2: 'Courier Prime', monospace;
+    --letra-parrafos: 'Roboto Serif', serif;
+    --letra-textos: 'Montserrat', sans-serif;
+    --letra-enlaces: 'Lobster Two', cursive;
+    --letra-botones: "Bebas Neue", serif;   
+}
+
+.tienda-virtual{
+    --color-primario: #252525;    
+    --color-secundario: #FF0000; 
+    --color-terciario: #AF0404;  
+    --color-cuaternario: #414141;
+    --color-cuaternario2: #F5EDED; 
+}
+
+.bienestar{
+    --color-primario: #0008C1;  
+    --color-secundario: #2146C7;
+    --color-terciario: #E6CBA8; 
+    --color-cuaternario: #FDF0E0; 
+}
+
+.economia{
+    --color-primario: #2D033B;  
+    --color-secundario: #810CA8;
+    --color-terciario: #C147E9;  
+    --color-cuaternario: #E5B8F4; 
+}
+
+.territorio{
+    --color-primario: #125C13; 
+    --color-secundario: #3E7C17; 
+    --color-terciario: #F4A442;  
+    --color-cuaternario: #E8E1D9;
+}
+
+.pedagogia{
+    --color-primario: #FFB400; 
+    --color-secundario: #FFFBE0; 
+    --color-terciario: #2994B2; 
+    --color-cuaternario: #474744;
+}
+
+h1{
+    font-family: var(--letra-titulos);
+    font-weight: 700;
+    margin: 0 auto;
+}
+
+h2, h3{
+    font-family: var(--letra-subtitulo1);
+    font-weight: 700;
+}
+
+h4, h5, h6{
+    font-family: var(--letra-subtitulos2);
+    font-weight: 400;
+}
+
+p.estilo1{
+    font-family: var(--letra-parrafos);
+    font-weight: 200;
+}
+
+p.estilo2{
+    font-family: var(--letra-textos);
+    font-weight: 200;
+}
+
+a{
+    font-family: var(--letra-enlaces);
+    font-weight: 400;
+}
+
