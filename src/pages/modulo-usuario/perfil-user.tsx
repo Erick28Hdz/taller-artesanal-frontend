@@ -17,14 +17,14 @@ const Perfil = () => {
     return (
         <main className='perfil-usuario tienda-virtual'>
             <div className='titulo-principal-perfil'>
-                <h3>Configuración del perfil de usuario</h3>
+                <h2>Configuración del perfil de usuario</h2>
             </div>
             <div className='seccion-perfil'>
                 <div className='avatar-perfil'>
                     <Card style={{ width: '18rem' }}>
                         <Card.Img variant="top" src="/images/Iconos/avatar.png" />
                         <Card.Body>
-                            <Card.Title>Nombre usuario</Card.Title>
+                            <h3>Nombre usuario</h3>
                             <Card.Text>
                                 Some quick example text to build on the card title and make up the
                                 bulk of the card's content.
@@ -33,6 +33,9 @@ const Perfil = () => {
                                 <Form.Label>Cambiar foto de perfil</Form.Label>
                                 <Form.Control type="file" />
                             </Form.Group>
+                            <Button variant="primary" type="submit">
+                                Guardar cambios
+                            </Button>
                         </Card.Body>
                     </Card>
                 </div>
@@ -111,58 +114,7 @@ const Perfil = () => {
                             </Accordion.Body>
                         </Accordion.Item>
                         <Accordion.Item eventKey="1">
-                            <Accordion.Header>Datos de mensajeria</Accordion.Header>
-                            <Accordion.Body>
-                                <Form className="form-perfil">
-                                    <div className='direcciones-perfil'>
-                                        <div>
-                                            <h6>Dirección</h6>
-                                            <Form.Group className="mb-3 inputForm-perfil" controlId="formGridAddress1">
-                                                <Form.Control className='input' placeholder="1234 Main St" />
-                                            </Form.Group>
-                                        </div>
-                                        <div>
-                                            <h6>Ubicación</h6>
-                                            <Form.Group className="mb-3 inputForm-perfil" controlId="formGridAddress2">
-                                                <Form.Control className='input' placeholder="Apartment, studio, or floor" />
-                                            </Form.Group>
-                                        </div>
-                                    </div>
-                                    <Row className="mb-3">
-                                        <div className='direcciones-perfil'>
-                                            <div>
-                                                <h6>Departamento</h6>
-                                                <Form.Group className='inputForm-perfil' as={Col} controlId="formGridCity">
-                                                    <Form.Control className='input' />
-                                                </Form.Group>
-                                            </div>
-                                            <div>
-                                                <h6>Ciudad</h6>
-                                                <Form.Group className='inputForm-perfil' as={Col} controlId="formGridState">
-
-                                                    <Form.Select className='input' defaultValue="Choose...">
-                                                        <option>Choose...</option>
-                                                        <option>...</option>
-                                                    </Form.Select>
-                                                </Form.Group>
-                                            </div>
-                                            <div>
-                                                <h6>Zip</h6>
-                                                <Form.Group className='inputForm-perfil' as={Col} controlId="formGridZip">
-
-                                                    <Form.Control className='input' />
-                                                </Form.Group>
-                                            </div>
-                                        </div>
-                                    </Row>
-                                    <Button variant="primary" type="submit">
-                                        Guardar cambios
-                                    </Button>
-                                </Form>
-                            </Accordion.Body>
-                        </Accordion.Item>
-                        <Accordion.Item eventKey="2">
-                            <Accordion.Header>SEguridad personal</Accordion.Header>
+                            <Accordion.Header>Seguridad personal</Accordion.Header>
                             <Accordion.Body>
                                 <Row className="mb-3 formulario-perfil">
                                     <form className="form-perfil">
@@ -214,6 +166,65 @@ const Perfil = () => {
                                 </Button>
                             </Accordion.Body>
                         </Accordion.Item>
+                        <Accordion.Item eventKey="2">
+                            <Accordion.Header>Datos de mensajeria</Accordion.Header>
+                            <Accordion.Body>
+                                <Form className="form-perfil">
+                                    <div className='direcciones-perfil'>
+                                        <div>
+                                            <h6>País</h6>
+                                            <Form.Group className="mb-3 inputForm-perfil" controlId="formGridAddress1">
+                                                <Form.Control className='input' placeholder="Ingresa tú país" />
+                                            </Form.Group>
+                                        </div>
+                                        <div>
+                                            <h6>Provincia</h6>
+                                            <Form.Group className='inputForm-perfil' as={Col} controlId="formGridCity">
+                                                <Form.Control className='input' />
+                                            </Form.Group>
+                                        </div>
+                                        <div>
+                                            <h6>Ciudad</h6>
+                                            <Form.Group className='inputForm-perfil' as={Col} controlId="formGridState">
+
+                                                <Form.Select className='input' defaultValue="Elegir">
+                                                    <option>Elegir</option>
+                                                    <option>...</option>
+                                                </Form.Select>
+                                            </Form.Group>
+                                        </div>
+                                    </div>
+                                    <Row className="mb-3">
+                                        <div className='direcciones-perfil'>
+
+                                            <div>
+                                                <h6>Dirección</h6>
+                                                <Form.Group className="mb-3 inputForm-perfil" controlId="formGridAddress1">
+                                                    <Form.Control className='input' placeholder="Dirección local" />
+                                                </Form.Group>
+                                            </div>
+                                            <div>
+                                                <h6>Ubicación</h6>
+                                                <Form.Group className="mb-3 inputForm-perfil" controlId="formGridAddress2">
+                                                    <Form.Control className='input' placeholder="Lugar residencial" />
+                                                </Form.Group>
+                                            </div>
+                                            <div>
+                                                <h6>Zip</h6>
+                                                <Form.Group className='inputForm-perfil' as={Col} controlId="formGridZip"
+                                                >
+                                                    <Form.Control className='input' />
+                                                </Form.Group>
+                                            </div>
+                                        </div>
+                                    </Row>
+                                    <Button variant="primary" type="submit">
+                                        Guardar cambios
+                                    </Button>
+                                </Form>
+                            </Accordion.Body>
+                        </Accordion.Item>
+
                     </Accordion>
                 </div>
             </div>
@@ -322,8 +333,8 @@ const Perfil = () => {
                         <div className='card-notificacion-pedidos'>
                             <h5>7. Notificaciones de Pagos 💳</h5>
                             <p> 🟢 Confirmación de pago exitoso. <br />
-                            🟢 Pago rechazado o fallido. <br />
-                            🟢 Recordatorio de pago pendiente.</p>
+                                🟢 Pago rechazado o fallido. <br />
+                                🟢 Recordatorio de pago pendiente.</p>
                         </div>
                         <div className='boton-notificacion-pedidos'>
                             <h5>Cambiar</h5>
@@ -338,9 +349,9 @@ const Perfil = () => {
                         <div className='card-notificacion-pedidos'>
                             <h5>8. Notificaciones de Envío y Logística 🚚</h5>
                             <p> 🟢 Confirmación de dirección de envío. <br />
-                            🟢 El paquete ha salido para entrega. <br />
-                            🟢 Problema con la entrega. <br />
-                            🟢 Confirmación de recepción del pedido.</p>
+                                🟢 El paquete ha salido para entrega. <br />
+                                🟢 Problema con la entrega. <br />
+                                🟢 Confirmación de recepción del pedido.</p>
                         </div>
                         <div className='boton-notificacion-pedidos'>
                             <h5>Cambiar</h5>
@@ -351,8 +362,10 @@ const Perfil = () => {
                             />
                         </div>
                     </div>
+                    <Button variant="primary" type="submit">
+                        Guardar cambios
+                    </Button>
                 </Form>
-
             </div>
         </main>
     );

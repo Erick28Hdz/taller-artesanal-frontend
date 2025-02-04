@@ -7,7 +7,8 @@
 
 .main-home h2 {
   text-align: center;
-  margin: 20px;
+  margin: 0px 20px;
+  padding: 20px;
   font-weight: 700;
   font-size: 35px;
   color: var(--color-primario);
@@ -342,7 +343,7 @@
   float: right;
   cursor: pointer;
   font-size: 25px;
-  color: #ffa723; /* Color permanente para las estrellas */
+  color: var(--color-secundario); /* Color permanente para las estrellas */
 }
 
 .rating > label:before {

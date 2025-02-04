@@ -8,8 +8,11 @@
   margin: 20px 0px;
 }
 
-.titulo-principal-perfil{
-  color: var(--color-secundario);
+.titulo-principal-perfil h2 {
+  text-align: center;
+  font-weight: 700;
+  font-size: 35px;
+  color: var(--color-primario);
 }
 
 /*Sección foto de perfil*/
@@ -19,6 +22,18 @@
   display: flex;
   justify-content: space-evenly;
   margin: 30px;
+}
+
+/*Descripción y avatar del perfil*/
+.avatar-perfil .card {
+  background-color: var(--color-cuaternario2);
+  border: 2px solid var(--color-cuaternario);
+  filter: drop-shadow(0px 0px 5px var(--color-cuaternario));
+}
+
+.avatar-perfil p {
+  font-family: var(--letra-textos);
+  font-weight: 700;
 }
 
 /*Sección de datos personales*/
@@ -46,7 +61,6 @@
   background-color: var(--color-secundario);
   color: var(--color-cuaternario2);
   font-family: var(--letra-subtitulos2);
-
   border: 2px solid var(--color-primario);
 }
 
@@ -122,6 +136,9 @@
   box-shadow: none;
 }
 
+.form-select {
+  width: 150px;
+}
 /*Botones de genero*/
 .selec-genero {
   width: 100%;
@@ -131,8 +148,7 @@
 
 :focus {
   outline: 0;
-  border-color: var(--color-secundario);
-  box-shadow: 0 0 0 4px var(--color-cuaternario2);
+  border-color: var(--color-secundario); 
 }
 
 .mydict div {
@@ -201,7 +217,7 @@ label:last-child span {
   border-color: var(--color-primario);
 }
 
-button:active {
+.btn-primary:active {
   border-color: var(--color-cuaternario) !important;
   background-color: var(--color-secundario) !important;
   box-shadow: none !important;
