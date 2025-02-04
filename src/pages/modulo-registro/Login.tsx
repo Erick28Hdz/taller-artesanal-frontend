@@ -28,14 +28,12 @@ const Login = () => {
                     <img src="/images/Iconos/bloquear.png" alt="" />
                     <input placeholder="Ingresa tú contraseña" className="input" type="password" required />
                 </div>
-
                 <div className="flex-row">
                     <div>
                         <input type="radio" />
                         <label>Recuerdame </label>
                     </div>
                     <p className="span">
-
                         <Link to="/Remember" className="span">¿Olvidaste la contraseña?</Link>
                     </p>
                 </div>
@@ -46,19 +44,14 @@ const Login = () => {
                     <Link to="/Register" className="span">Registrarse</Link>
                 </p>
                 <p className="p line">O ingresa con:</p>
-
                 <div className="flex-row">
                     <button className="btn google">
                         <img src="/images/Iconos/google.png" alt="" />
-
                         Google
-
                     </button>
                     <button className="btn apple">
                         <img src="/images/Iconos/apple.png" alt="" />
-
                         Apple
-
                     </button>
                 </div>
             </form>

@@ -65,9 +65,9 @@ const App = () => {
                 <Route
                     path="/Perfil"
                     element={
-                        <LoginLayout>
-                            <Login />
-                        </LoginLayout>
+                        <MainLayout>
+                            <Perfil />
+                        </MainLayout>
                     }
                 />
             </Routes>

@@ -64,7 +64,7 @@ const navbar = () => {
                                     <NavDropdown.Item href="#action/3.2">
                                         Envios<img src="/images/Iconos/envio.png" alt="" />
                                     </NavDropdown.Item>
-                                    <NavDropdown.Item href="#action/3.3">Configuración<img src="/images/Iconos/configuracion.png" alt="" /></NavDropdown.Item>
+                                    <NavDropdown.Item href="/Perfil">Configuración<img src="/images/Iconos/configuracion.png" alt="" /></NavDropdown.Item>
                                     <NavDropdown.Divider />
                                     <NavDropdown.Item href="/Login">
                                         Cerrar sesión<img src="/images/Iconos/cerrar-sesion.png" alt="" />

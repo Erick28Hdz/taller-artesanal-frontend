@@ -1,0 +1,276 @@
+@import url("../style.css");
+
+.perfil-usuario {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0px;
+}
+
+.titulo-principal-perfil{
+  color: var(--color-secundario);
+}
+
+/*Sección foto de perfil*/
+.seccion-perfil {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-evenly;
+  margin: 30px;
+}
+
+/*Sección de datos personales*/
+.acordeon-perfil {
+  width: 50%;
+}
+
+.formulario-perfil {
+  display: flex;
+  justify-content: center;
+}
+
+/*Formulario ingreso datos personales*/
+.accordion {
+  border-radius: 10px;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: var(--color-cuaternario);
+  color: var(--color-cuaternario2);
+  font-family: var(--letra-subtitulos2);
+}
+
+.accordion-button.collapsed {
+  background-color: var(--color-secundario);
+  color: var(--color-cuaternario2);
+  font-family: var(--letra-subtitulos2);
+
+  border: 2px solid var(--color-primario);
+}
+
+.accordion-button:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+.form-perfil {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--color-cuaternario2);
+  padding: 30px;
+  width: 100%;
+  border-radius: 20px;
+  border: 2px solid var(--color-primario);
+  filter: drop-shadow(0px 0px 5px var(--color-cuaternario));
+}
+
+.input-nombres,
+.input-principales {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.form-perfil .inputForm-perfil img {
+  width: 30px;
+  height: auto;
+}
+
+.form-perfil .flex-column {
+  text-align: start;
+  width: 100%;
+  font-family: var(--letra-parrafos);
+}
+
+.inputForm-perfil {
+  width: 90%;
+  border: 1.5px solid var(--color-secundario);
+  border-radius: 10px;
+  height: 50px;
+  display: flex;
+  padding-left: 10px;
+  transition: 0.2s ease-in-out;
+  align-items: center;
+}
+
+.inputForm-perfil .input {
+  color: var(--color-secundario);
+  font-family: var(--letra-textos);
+  font-weight: 700;
+  margin: 0 auto;
+}
+
+.input {
+  border: 2px solid transparent;
+  padding: 8px;
+  transition: border 0.3s ease-in-out;
+  outline: none;
+}
+
+.input::placeholder {
+  font-family: var(--letra-textos);
+  color: var(--color-primario);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-terciario);
+  box-shadow: none;
+}
+
+/*Botones de genero*/
+.selec-genero {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+:focus {
+  outline: 0;
+  border-color: var(--color-secundario);
+  box-shadow: 0 0 0 4px var(--color-cuaternario2);
+}
+
+.mydict div {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+  justify-content: center;
+}
+
+.mydict input[type="radio"] {
+  clip: rect(0 0 0 0);
+  clip-path: inset(100%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.mydict input[type="radio"]:checked + span {
+  box-shadow: 0 0 0 0.0625em var(--color-terciario);
+  background-color: var(--color-secundario);
+  z-index: 1;
+  color: var(--color-cuaternario2);
+}
+
+label span {
+  font-family: var(--letra-parrafos);
+  font-weight: 700;
+  display: block;
+  cursor: pointer;
+  background-color: var(--color-cuaternario);
+  padding: 0.375em 0.75em;
+  position: relative;
+  margin-left: 0.0625em;
+  box-shadow: 0 0 0 0.0625em var(--color-primario);
+  letter-spacing: 0.05em;
+  color: var(--color-secundario);
+  text-align: center;
+  transition: background-color 0.5s ease;
+}
+
+label:first-child span {
+  border-radius: 0.375em 0 0 0.375em;
+}
+
+label:last-child span {
+  border-radius: 0 0.375em 0.375em 0;
+}
+
+/*Botón de guardar cambios*/
+.btn-primary {
+  background-color: var(--color-primario);
+  border-color: var(--color-terciario);
+  font-family: var(--letra-botones);
+  font-weight: 700;
+  font-size: 25px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  letter-spacing: 2px;
+  border-radius: 10px;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-terciario);
+  border-color: var(--color-primario);
+}
+
+button:active {
+  border-color: var(--color-cuaternario) !important;
+  background-color: var(--color-secundario) !important;
+  box-shadow: none !important;
+}
+
+/*Sección de envios perfil*/
+.seccion-notificaciones {
+  width: 90%;
+  display: flex;
+  margin: 30px auto;
+  gap: 30px;
+}
+
+.notificaciones-usuario {
+  width: 50%;
+}
+.direcciones-perfil {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+/*Notificaciones del usuario*/
+.notificaciones-tienda {
+  background-color: var(--color-cuaternario2);
+  width: 100%;
+  gap: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid;
+  border-radius: 5px;
+  margin: 5px 0px;
+  padding: 10px 15px;
+}
+
+/*notificaciones de los pedidos*/
+.card-notificacion-pedidos h5 {
+  color: var(--color-secundario);
+  font-weight: 700;
+  text-align: start;
+}
+
+.card-notificacion-pedidos p {
+  margin: 0;
+  font-family: var(--letra-textos);
+  font-weight: 700;
+}
+
+.boton-notificacion-pedidos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.boton-notificacion-switch input:checked + .form-check-label::before {
+  background-color: var(--color-cuaternario) !important;
+  border-color: 2px solid var(--color-terciario) !important;
+}
+
+/* Color del fondo cuando está desactivado */
+.boton-notificacion-switch .form-check-input {
+  background-color: var(--color-cuaternario2) !important;
+  border-color: var(--color-primario) !important;
+  box-shadow: none !important;
+}
+
+/* Cambia el color del círculo (toggle) */
+.boton-notificacion-switch .form-check-input:checked {
+  background-color: var(--color-terciario) !important;
+  color: var(--color-cuaternario);
+}
