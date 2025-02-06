@@ -12,6 +12,10 @@ import Remember from "./pages/modulo-registro/Remember";
 /*Modulo Usuarios*/
 import Perfil from "./pages/modulo-usuario/perfil-user";
 
+/*Modulo productos*/
+import Categorias from "./pages/modulo-productos/categorias";
+import Productos from "./pages/modulo-productos/productos";
+
 /*Layouts predeterminados*/
 import LoginLayout from "./layouts/LoginLayout";
 import MainLayout from "./layouts/MainLayout";
@@ -68,6 +72,22 @@ const App = () => {
                         <MainLayout>
                             <Perfil />
                         </MainLayout>
+                    }
+                />
+                <Route
+                    path="/Categorias"
+                    element={
+                        <SimpleLayout>
+                            < Categorias/>
+                        </SimpleLayout>
+                    }
+                />
+                <Route
+                    path="/Productos"
+                    element={
+                        <SimpleLayout>
+                            < Productos/>
+                        </SimpleLayout>
                     }
                 />
             </Routes>

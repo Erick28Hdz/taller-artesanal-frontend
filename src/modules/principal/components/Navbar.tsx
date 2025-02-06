@@ -30,11 +30,11 @@ const navbar = () => {
                             </div>
                             <div className="titulos-opc-nav">
                                 <img src="/images/Iconos/categoria.png" alt="" />
-                                <button className="boton-navbar">Categorías</button>
+                                <Link to="/Categorias" className="boton-navbar">Categorías</Link>
                             </div>
                             <div className="titulos-opc-nav">
                                 <img src="/images/Iconos/producto.png" alt="" />
-                                <button className="boton-navbar">Productos</button>
+                                <Link to="/Productos" className="boton-navbar">Productos</Link>
                             </div>
                             <div className="titulos-opc-nav">
                                 <img src="/images/Iconos/promocion.png" alt="" />
