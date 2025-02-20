@@ -38,11 +38,11 @@ const navbar = () => {
                             </div>
                             <div className="titulos-opc-nav">
                                 <img src="/images/Iconos/promocion.png" alt="" />
-                                <button className="boton-navbar">Promociones</button>
+                                <Link to="/Promociones" className="boton-navbar">Promociones</Link>
                             </div>
                             <div className="titulos-opc-nav">
                                 <img src="/images/Iconos/resena.png" alt="" />
-                                <button className="boton-navbar">Reseñas</button>
+                                <Link to="/Reseñas" className="boton-navbar">Reseñas</Link>
                             </div>
                             <div className="titulos-opc-nav">
                                 <img src="/images/Iconos/informacion.png" alt="" />
@@ -59,7 +59,7 @@ const navbar = () => {
                                 >
                                     <NavDropdown.Item href="#action/3.1">Notificación<img src="/images/Iconos/notificacion.png" alt="" />
                                     </NavDropdown.Item>
-                                    <NavDropdown.Item href="#action/3.1">Compras<img src="/images/Iconos/carrito-de-compras.png" alt="" />
+                                    <NavDropdown.Item href="/Compras">Compras<img src="/images/Iconos/carrito-de-compras.png" alt="" />
                                     </NavDropdown.Item>
                                     <NavDropdown.Item href="#action/3.2">
                                         Envios<img src="/images/Iconos/envio.png" alt="" />

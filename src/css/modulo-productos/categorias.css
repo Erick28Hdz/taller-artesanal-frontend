@@ -103,7 +103,6 @@
   justify-content: space-around;
 }
 
-
 .input-navegación {
   display: flex;
   flex-direction: row;
@@ -161,137 +160,156 @@
 
 /*Sección visualización de productos*/
 .seccion-productos-categoria {
-    width: 95%;
-    margin: 20px auto;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    scroll-snap-type: y mandatory;
-    overflow: auto;
-    height: 550px;
-    background-color: var(--color-secundario);
-    border: 2px solid var(--color-cuaternario);
-    border-radius: 10px;
+  width: 95%;
+  margin: 20px auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  scroll-snap-type: y mandatory;
+  overflow: auto;
+  height: 550px;
+  background-color: var(--color-secundario);
+  border: 2px solid var(--color-cuaternario);
+  border-radius: 10px;
 }
-.seccion-titulo-tarjetas{
-    width: 95%;
-    height: 50px;
-    display: flex;
-    justify-content: space-between;
+.seccion-titulo-tarjetas {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
-.seccion-titulo-tarjetas h3{
-    color: var(--color-cuaternario2);
-    font-size: 30px;
+.titulo-contenedor-productos {
+  display: flex;
+  align-items: center;
+  background-color: var(--color-primario);
+  padding: 5px;
+  border-radius: 5px;
 }
+
+.seccion-titulo-tarjetas h3 {
+  color: var(--color-cuaternario2);
+  font-size: 30px;
+  margin: 0;
+}
+
+
 
 /*Filtración de productos*/
 .select-filtros {
-    width: fit-content;
-    cursor: pointer;
-    position: relative;
-    transition: 300ms;
-    color: var(--color-cuaternario2);
-    overflow: visible;
-    z-index: 10;
-  }
-  
-  .selected-filtros {
-    background-color: var(--color-primario);
-    padding: 5px;
-    margin-bottom: 3px;
-    border-radius: 5px;
-    position: relative;
-    z-index: 100000;
-    font-size: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .arrow-filtros {
-    position: relative;
-    right: 0px;
-    height: 10px;
-    transform: rotate(-90deg);
-    width: 25px;
-    fill: var(--color-cuaternario2);
-    z-index: 100000;
-    transition: 300ms;
-  }
-  
-  .options-filtros {
-    display: flex;
-    flex-direction: column;
-    border-radius: 5px;
-    padding: 5px;
-    background-color: var(--color-primario);
-    position: relative;
-    top: -100px;
-    opacity: 0;
-    transition: 300ms;
-  }
-  
-  .select-filtros:hover > .options-filtros {
-    opacity: 1;
-    top: 0;
-  }
-  
-  .select-filtros:hover > .selected-filtros .arrow-filtros {
-    transform: rotate(0deg);
-  }
-  
-  .option-filtros {
-    border-radius: 5px;
-    padding: 5px;
-    transition: 300ms;
-    background-color: var(--color-cuaternario);
-    width: 150px;
-    font-size: 15px;
-  }
-  .option-filtros:hover {
-    background-color: var(--color-secundario);
-  }
-  
-  .options-filtros input[type="radio"] {
-    display: none;
-  }
-  
-  .options-filtros label {
-    display: inline-block;
-  }
-  .options-filtros label::before {
-    content: attr(data-txt);
-  }
-  
-  .options-filtros input[type="radio"]:checked + label {
-    display: none;
-  }
-  
-  .options-filtros input[type="radio"]#all:checked + label {
-    display: none;
-  }
-  
-  .select-filtros:has(.options-filtros input[type="radio"]#all:checked) .selected-filtros::before {
-    content: attr(data-default);
-  }
-  .select-filtros:has(.options-filtros input[type="radio"]#option-1:checked) .selected::before {
-    content: attr(data-one);
-  }
-  .select-filtros:has(.options-filtros input[type="radio"]#option-2:checked) .selected::before {
-    content: attr(data-two);
-  }
-  .select-filtros:has(.options-filtros input[type="radio"]#option-3:checked) .selected-filtros::before {
-    content: attr(data-three);
-  }
-/*Tarjetas de los productos de cada categoria*/
-.tarjetas-productos-categoria{
-    width: 100%;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
+  width: fit-content;
+  cursor: pointer;
+  position: relative;
+  transition: 300ms;
+  color: var(--color-cuaternario2);
+  overflow: visible;
+  z-index: 10;
 }
+
+.selected-filtros {
+  background-color: var(--color-primario);
+  padding: 5px;
+  margin-bottom: 3px;
+  border-radius: 5px;
+  position: relative;
+  z-index: 100000;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.arrow-filtros {
+  position: relative;
+  right: 0px;
+  height: 10px;
+  transform: rotate(-90deg);
+  width: 25px;
+  fill: var(--color-cuaternario2);
+  z-index: 100000;
+  transition: 300ms;
+}
+
+.options-filtros {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: var(--color-primario);
+  position: relative;
+  top: -100px;
+  opacity: 0;
+  transition: 300ms;
+}
+
+.select-filtros:hover > .options-filtros {
+  opacity: 1;
+  top: 0;
+}
+
+.select-filtros:hover > .selected-filtros .arrow-filtros {
+  transform: rotate(0deg);
+}
+
+.option-filtros {
+  border-radius: 5px;
+  padding: 5px;
+  transition: 300ms;
+  background-color: var(--color-cuaternario);
+  width: 150px;
+  font-size: 15px;
+}
+.option-filtros:hover {
+  background-color: var(--color-secundario);
+}
+
+.options-filtros input[type="radio"] {
+  display: none;
+}
+
+.options-filtros label {
+  display: inline-block;
+}
+.options-filtros label::before {
+  content: attr(data-txt);
+}
+
+.options-filtros input[type="radio"]:checked + label {
+  display: none;
+}
+
+.options-filtros input[type="radio"]#all:checked + label {
+  display: none;
+}
+
+.select-filtros:has(.options-filtros input[type="radio"]#all:checked)
+  .selected-filtros::before {
+  content: attr(data-default);
+}
+.select-filtros:has(.options-filtros input[type="radio"]#option-1:checked)
+  .selected::before {
+  content: attr(data-one);
+}
+.select-filtros:has(.options-filtros input[type="radio"]#option-2:checked)
+  .selected::before {
+  content: attr(data-two);
+}
+.select-filtros:has(.options-filtros input[type="radio"]#option-3:checked)
+  .selected-filtros::before {
+  content: attr(data-three);
+}
+/*Tarjetas de los productos de cada categoria*/
+.tarjetas-productos-categoria {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
 /*Card principal de los productos*/
 .card-principal-productos {
   margin: 0 auto;
@@ -713,8 +731,6 @@
 }
 
 .card-imagen-producto:hover .image-imagen-producto {
-  /* top: 20%;
-    left: 30%; */
   width: 220px;
   height: auto;
   animation: none;
@@ -750,12 +766,72 @@
   right: 5%;
 }
 
-
 /*Paginación de los productos*/
 .custom-pagination-stack {
-    padding: 20px;
-  }
-
-.css-1bug3cd-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected{
-    background-color: var(--color-cuaternario) !important;
+  padding: 20px;
 }
+
+.css-1bug3cd-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
+  background-color: var(--color-cuaternario) !important;
+}
+
+
+/*Sección de productos personalizados*/
+.seccion-personalizados-categoria, .seccion-cantidades-categoria {
+  width: 95%;
+  margin: 20px auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  scroll-snap-type: x mandatory;
+  overflow: auto;
+  height: 550px;
+  background-color: var(--color-primario);
+  border: 2px solid var(--color-terciario);
+  border-radius: 10px;
+
+  position: relative; /* Necesario para que el título se posicione dentro */
+    display: flex;
+    overflow-x: auto; /* Scroll horizontal */
+    white-space: nowrap; 
+}
+
+/*Card principal de los productos personalizados*/
+.card-principal-productos-personalizados {
+  margin: 0 auto;
+  background-color: var(--color-cuaternario2);
+  width: 380px;
+  max-height: 430px;
+  display: flex;
+  flex-direction: column; 
+  border-top: 4px solid var(--color-terciario);
+  border-bottom: 4px solid var(--color-terciario);
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.card-principal-productos-personalizados:hover {
+  box-shadow: 0px 0px 30px 0px var(--color-terciario);
+  transition: all 0.2s cubic-bezier(0.175, 0.285, 0.82, 1.275);
+  border: 4px solid var(--color-terciario);
+}
+
+
+.tarjetas-productos-categoria-personalizados {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  gap: 30px;
+  padding: 10px;
+}
+
+.titulo-contenedor-productos-personalizados h3 {
+  color: var(--color-cuaternario2);
+  font-size: 30px;
+  text-align: start;
+}
+
+

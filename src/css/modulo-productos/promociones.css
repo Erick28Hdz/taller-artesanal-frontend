@@ -1,0 +1,33 @@
+@import url("../style.css");
+
+.promociones {
+  width: 90%;
+  margin: 0px auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.promociones h2 {
+  text-align: center;
+  margin: 0px 20px;
+  padding: 20px;
+  font-weight: 700;
+  font-size: 35px;
+  color: var(--color-primario);
+}
+
+.seccion-filtros-promociones{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.contenedor-principal-promociones{
+    display: flex;
+    justify-content: space-between;
+}
+
+.texto-filtros{
+  width: 60%;
+}

@@ -85,7 +85,7 @@ const Categorias = () => {
                         </Carousel>
                     </div>
                 </div>
-            </section>      
+            </section>
             <section className='sec-productos-top'>
                 <div className='seccion-productos-top'>
                     <h4>Productos TOP de nuestra tienda</h4>
@@ -276,7 +276,7 @@ const Categorias = () => {
             </section>
             <section className='seccion-productos-categoria'>
                 <div className="seccion-titulo-tarjetas">
-                    <div>
+                    <div className="titulo-contenedor-productos">
                         <h3>Productos de la categoria</h3>
                     </div>
                     <div className="select-filtros">
@@ -1052,9 +1052,1049 @@ const Categorias = () => {
                     <Pagination count={10} color="primary" />
                 </Stack>
             </section>
-            <section className='seccion-personalizados-categoria'></section>
-            <section className='seccion-promociones-categoria'></section>
-            <section className='seccion-cantidades-categoria'></section>
+            <section className='seccion-personalizados-categoria'>
+                <div className='titulo-contenedor-productos-personalizados'>
+                    <h3>Productos personalizados</h3>
+                </div>
+                <div className='tarjetas-productos-categoria-personalizados'>
+                    <div className="card-principal-productos-personalizados">
+                        <div className="card-imagen-producto">
+
+                            <div className="image-imagen-producto">
+                                <img src="/images/Productos/productos-top/06AR20-1.jpg" alt="" />
+                            </div>
+                            <div className="text-imagen-producto">
+                                <h6>Aretes tejidos</h6>
+                                <p>$20.000</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div className="heading-principal-productos">
+                                <h5>Titúlo producto</h5>
+                                <p>Descripción producto</p>
+                            </div>
+                            <div className='estrellas-corazon'>
+                                <div className="rating">
+                                    <input value="5" name="rating" id="star5" type="radio" />
+                                    <label htmlFor="star5"></label>
+                                    <input value="4" name="rating" id="star4" type="radio" />
+                                    <label htmlFor="star4"></label>
+                                    <input value="3" name="rating" id="star3" type="radio" />
+                                    <label htmlFor="star3"></label>
+                                    <input value="2" name="rating" id="star2" type="radio" />
+                                    <label htmlFor="star2"></label>
+                                    <input value="1" name="rating" id="star1" type="radio" />
+                                    <label htmlFor="star1"></label>
+                                </div>
+                                <div className='corazon-producto'>
+                                    <label className="ui-like">
+                                        <input type="checkbox" />
+                                        <div className="like">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill=""><g stroke-width="0" id="SVGRepo_bgCarrier"></g><g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g><g id="SVGRepo_iconCarrier"><path d="M20.808,11.079C19.829,16.132,12,20.5,12,20.5s-7.829-4.368-8.808-9.421C2.227,6.1,5.066,3.5,8,3.5a4.444,4.444,0,0,1,4,2,4.444,4.444,0,0,1,4-2C18.934,3.5,21.773,6.1,20.808,11.079Z"></path></g></svg>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <Form className='tallas-producto'>
+                                {(["radio"] as Array<"radio" | "checkbox">).map((type) => (
+                                    <div key={`inline-${type}`} className="mb-3">
+                                        <Form.Check
+                                            inline
+                                            label="XS"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-1`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            label="S"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-2`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            disabled
+                                            label="M"
+                                            type={type}
+                                            id={`inline-${type}-3`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            label="L"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-4`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            label="XL"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-5`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            label="XLL"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-6`}
+                                        />
+                                    </div>
+                                ))}
+                                <div className='heading-principal-productos'>
+                                    <a href="">Ver producto</a>
+                                </div>
+                            </Form>
+                        </div>
+                    </div>
+                    <div className="card-principal-productos-personalizados">
+                        <div className="card-imagen-producto">
+
+                            <div className="image-imagen-producto">
+                                <img src="/images/Productos/productos-top/06AR20-1.jpg" alt="" />
+                            </div>
+                            <div className="text-imagen-producto">
+                                <h6>Aretes tejidos</h6>
+                                <p>$20.000</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div className="heading-principal-productos">
+                                <h5>Titúlo producto</h5>
+                                <p>Descripción producto</p>
+                            </div>
+                            <div className='estrellas-corazon'>
+                                <div className="rating">
+                                    <input value="5" name="rating" id="star5" type="radio" />
+                                    <label htmlFor="star5"></label>
+                                    <input value="4" name="rating" id="star4" type="radio" />
+                                    <label htmlFor="star4"></label>
+                                    <input value="3" name="rating" id="star3" type="radio" />
+                                    <label htmlFor="star3"></label>
+                                    <input value="2" name="rating" id="star2" type="radio" />
+                                    <label htmlFor="star2"></label>
+                                    <input value="1" name="rating" id="star1" type="radio" />
+                                    <label htmlFor="star1"></label>
+                                </div>
+                                <div className='corazon-producto'>
+                                    <label className="ui-like">
+                                        <input type="checkbox" />
+                                        <div className="like">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill=""><g stroke-width="0" id="SVGRepo_bgCarrier"></g><g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g><g id="SVGRepo_iconCarrier"><path d="M20.808,11.079C19.829,16.132,12,20.5,12,20.5s-7.829-4.368-8.808-9.421C2.227,6.1,5.066,3.5,8,3.5a4.444,4.444,0,0,1,4,2,4.444,4.444,0,0,1,4-2C18.934,3.5,21.773,6.1,20.808,11.079Z"></path></g></svg>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <Form className='tallas-producto'>
+                                {(["radio"] as Array<"radio" | "checkbox">).map((type) => (
+                                    <div key={`inline-${type}`} className="mb-3">
+                                        <Form.Check
+                                            inline
+                                            label="XS"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-1`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            label="S"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-2`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            disabled
+                                            label="M"
+                                            type={type}
+                                            id={`inline-${type}-3`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            label="L"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-4`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            label="XL"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-5`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            label="XLL"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-6`}
+                                        />
+                                    </div>
+                                ))}
+                                <div className='heading-principal-productos'>
+                                    <a href="">Ver producto</a>
+                                </div>
+                            </Form>
+                        </div>
+                    </div>
+                    <div className="card-principal-productos-personalizados">
+                        <div className="card-imagen-producto">
+
+                            <div className="image-imagen-producto">
+                                <img src="/images/Productos/productos-top/06AR20-1.jpg" alt="" />
+                            </div>
+                            <div className="text-imagen-producto">
+                                <h6>Aretes tejidos</h6>
+                                <p>$20.000</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div className="heading-principal-productos">
+                                <h5>Titúlo producto</h5>
+                                <p>Descripción producto</p>
+                            </div>
+                            <div className='estrellas-corazon'>
+                                <div className="rating">
+                                    <input value="5" name="rating" id="star5" type="radio" />
+                                    <label htmlFor="star5"></label>
+                                    <input value="4" name="rating" id="star4" type="radio" />
+                                    <label htmlFor="star4"></label>
+                                    <input value="3" name="rating" id="star3" type="radio" />
+                                    <label htmlFor="star3"></label>
+                                    <input value="2" name="rating" id="star2" type="radio" />
+                                    <label htmlFor="star2"></label>
+                                    <input value="1" name="rating" id="star1" type="radio" />
+                                    <label htmlFor="star1"></label>
+                                </div>
+                                <div className='corazon-producto'>
+                                    <label className="ui-like">
+                                        <input type="checkbox" />
+                                        <div className="like">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill=""><g stroke-width="0" id="SVGRepo_bgCarrier"></g><g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g><g id="SVGRepo_iconCarrier"><path d="M20.808,11.079C19.829,16.132,12,20.5,12,20.5s-7.829-4.368-8.808-9.421C2.227,6.1,5.066,3.5,8,3.5a4.444,4.444,0,0,1,4,2,4.444,4.444,0,0,1,4-2C18.934,3.5,21.773,6.1,20.808,11.079Z"></path></g></svg>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <Form className='tallas-producto'>
+                                {(["radio"] as Array<"radio" | "checkbox">).map((type) => (
+                                    <div key={`inline-${type}`} className="mb-3">
+                                        <Form.Check
+                                            inline
+                                            label="XS"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-1`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            label="S"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-2`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            disabled
+                                            label="M"
+                                            type={type}
+                                            id={`inline-${type}-3`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            label="L"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-4`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            label="XL"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-5`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            label="XLL"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-6`}
+                                        />
+                                    </div>
+                                ))}
+                                <div className='heading-principal-productos'>
+                                    <a href="">Ver producto</a>
+                                </div>
+                            </Form>
+                        </div>
+                    </div>
+                    <div className="card-principal-productos-personalizados">
+                        <div className="card-imagen-producto">
+
+                            <div className="image-imagen-producto">
+                                <img src="/images/Productos/productos-top/06AR20-1.jpg" alt="" />
+                            </div>
+                            <div className="text-imagen-producto">
+                                <h6>Aretes tejidos</h6>
+                                <p>$20.000</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div className="heading-principal-productos">
+                                <h5>Titúlo producto</h5>
+                                <p>Descripción producto</p>
+                            </div>
+                            <div className='estrellas-corazon'>
+                                <div className="rating">
+                                    <input value="5" name="rating" id="star5" type="radio" />
+                                    <label htmlFor="star5"></label>
+                                    <input value="4" name="rating" id="star4" type="radio" />
+                                    <label htmlFor="star4"></label>
+                                    <input value="3" name="rating" id="star3" type="radio" />
+                                    <label htmlFor="star3"></label>
+                                    <input value="2" name="rating" id="star2" type="radio" />
+                                    <label htmlFor="star2"></label>
+                                    <input value="1" name="rating" id="star1" type="radio" />
+                                    <label htmlFor="star1"></label>
+                                </div>
+                                <div className='corazon-producto'>
+                                    <label className="ui-like">
+                                        <input type="checkbox" />
+                                        <div className="like">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill=""><g stroke-width="0" id="SVGRepo_bgCarrier"></g><g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g><g id="SVGRepo_iconCarrier"><path d="M20.808,11.079C19.829,16.132,12,20.5,12,20.5s-7.829-4.368-8.808-9.421C2.227,6.1,5.066,3.5,8,3.5a4.444,4.444,0,0,1,4,2,4.444,4.444,0,0,1,4-2C18.934,3.5,21.773,6.1,20.808,11.079Z"></path></g></svg>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <Form className='tallas-producto'>
+                                {(["radio"] as Array<"radio" | "checkbox">).map((type) => (
+                                    <div key={`inline-${type}`} className="mb-3">
+                                        <Form.Check
+                                            inline
+                                            label="XS"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-1`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            label="S"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-2`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            disabled
+                                            label="M"
+                                            type={type}
+                                            id={`inline-${type}-3`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            label="L"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-4`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            label="XL"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-5`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            label="XLL"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-6`}
+                                        />
+                                    </div>
+                                ))}
+                                <div className='heading-principal-productos'>
+                                    <a href="">Ver producto</a>
+                                </div>
+                            </Form>
+                        </div>
+                    </div>
+                    <div className="card-principal-productos-personalizados">
+                        <div className="card-imagen-producto">
+
+                            <div className="image-imagen-producto">
+                                <img src="/images/Productos/productos-top/06AR20-1.jpg" alt="" />
+                            </div>
+                            <div className="text-imagen-producto">
+                                <h6>Aretes tejidos</h6>
+                                <p>$20.000</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div className="heading-principal-productos">
+                                <h5>Titúlo producto</h5>
+                                <p>Descripción producto</p>
+                            </div>
+                            <div className='estrellas-corazon'>
+                                <div className="rating">
+                                    <input value="5" name="rating" id="star5" type="radio" />
+                                    <label htmlFor="star5"></label>
+                                    <input value="4" name="rating" id="star4" type="radio" />
+                                    <label htmlFor="star4"></label>
+                                    <input value="3" name="rating" id="star3" type="radio" />
+                                    <label htmlFor="star3"></label>
+                                    <input value="2" name="rating" id="star2" type="radio" />
+                                    <label htmlFor="star2"></label>
+                                    <input value="1" name="rating" id="star1" type="radio" />
+                                    <label htmlFor="star1"></label>
+                                </div>
+                                <div className='corazon-producto'>
+                                    <label className="ui-like">
+                                        <input type="checkbox" />
+                                        <div className="like">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill=""><g stroke-width="0" id="SVGRepo_bgCarrier"></g><g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g><g id="SVGRepo_iconCarrier"><path d="M20.808,11.079C19.829,16.132,12,20.5,12,20.5s-7.829-4.368-8.808-9.421C2.227,6.1,5.066,3.5,8,3.5a4.444,4.444,0,0,1,4,2,4.444,4.444,0,0,1,4-2C18.934,3.5,21.773,6.1,20.808,11.079Z"></path></g></svg>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <Form className='tallas-producto'>
+                                {(["radio"] as Array<"radio" | "checkbox">).map((type) => (
+                                    <div key={`inline-${type}`} className="mb-3">
+                                        <Form.Check
+                                            inline
+                                            label="XS"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-1`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            label="S"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-2`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            disabled
+                                            label="M"
+                                            type={type}
+                                            id={`inline-${type}-3`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            label="L"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-4`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            label="XL"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-5`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            label="XLL"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-6`}
+                                        />
+                                    </div>
+                                ))}
+                                <div className='heading-principal-productos'>
+                                    <a href="">Ver producto</a>
+                                </div>
+                            </Form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section className='sec-publicidad'>
+                <div className='publicidad'>
+                    <h2>Publicidad</h2>
+                </div>
+            </section>
+            <section className='seccion-promociones-categoria'>
+                <section className='descuentos-promociones'>
+                    <div className='tarjetas-descuento-promociones'>
+                        <div className='descuentos'>
+                            <div className="sec-productos-des">
+                                <div className="productos-descuentos">
+                                    <h4>Descuentos</h4>
+                                    <div className="card-descuento-uno">
+                                        <div className="card-image-descuento"><img src="/images/Productos/productos-top/01AR20.jpg" alt="" /></div>
+                                        <div className="card-content">
+                                            <div className="category">Illustration</div>
+                                            <div className="heading">
+                                                A heading that must span over two lines
+                                                <div className="author">By <span className="name">Abi</span> 4 days ago</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="card-descuento-dos">
+                                        <div className="card-image-descuento"><img src="/images/Productos/productos-top/01AR20.jpg" alt="" /></div>
+                                        <div className="card-content">
+                                            <div className="category">Illustration</div>
+                                            <div className="heading">
+                                                A heading that must span over two lines
+                                                <div className="author">By <span className="name">Abi</span> 4 days ago</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="card-descuento-uno">
+                                        <div className="card-image-descuento"><img src="/images/Productos/productos-top/01AR20.jpg" alt="" /></div>
+                                        <div className="card-content">
+                                            <div className="category">Illustration</div>
+                                            <div className="heading">
+                                                A heading that must span over two lines
+                                                <div className="author">By <span className="name">Abi</span> 4 days ago</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="card-descuento-dos">
+                                        <div className="card-image-descuento"><img src="/images/Productos/productos-top/01AR20.jpg" alt="" /></div>
+                                        <div className="card-content">
+                                            <div className="category">Illustration</div>
+                                            <div className="heading">
+                                                A heading that must span over two lines
+                                                <div className="author">By <span className="name">Abi</span> 4 days ago</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='promociones'>
+                            <div className="sec-productos-pro">
+                                <div className="productos-descuentos">
+                                    <h4>Promociones</h4>
+                                    <div className="card-descuento-uno-pro">
+                                        <div className="card-image-descuento"><img src="/images/Productos/productos-top/01AR20.jpg" alt="" /></div>
+                                        <div className="card-content">
+                                            <div className="category">Illustration</div>
+                                            <div className="heading">
+                                                A heading that must span over two lines
+                                                <div className="author">By <span className="name">Abi</span> 4 days ago</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="card-descuento-dos-pro">
+                                        <div className="card-image-descuento"><img src="/images/Productos/productos-top/01AR20.jpg" alt="" /></div>
+                                        <div className="card-content">
+                                            <div className="category">Illustration</div>
+                                            <div className="heading">
+                                                A heading that must span over two lines
+                                                <div className="author">By <span className="name">Abi</span> 4 days ago</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="card-descuento-uno-pro">
+                                        <div className="card-image-descuento"><img src="/images/Productos/productos-top/01AR20.jpg" alt="" /></div>
+                                        <div className="card-content">
+                                            <div className="category">Illustration</div>
+                                            <div className="heading">
+                                                A heading that must span over two lines
+                                                <div className="author">By <span className="name">Abi</span> 4 days ago</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="card-descuento-dos-pro">
+                                        <div className="card-image-descuento"><img src="/images/Productos/productos-top/01AR20.jpg" alt="" /></div>
+                                        <div className="card-content">
+                                            <div className="category">Illustration</div>
+                                            <div className="heading">
+                                                A heading that must span over two lines
+                                                <div className="author">By <span className="name">Abi</span> 4 days ago</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Nuestras mejores promociones y descuentos<br /><br /><button className='boton-enlaces'>
+                        <a href=""><i>Ver nuestro catalogo</i></a>
+                        <span className="icon">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 448 512"
+                                className="svg-icon"
+                            >
+                                <path
+                                    d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"
+                                ></path>
+                            </svg>
+                        </span>
+                    </button></h3>
+                </section>
+            </section>
+            <section className='seccion-cantidades-categoria'>
+                <div className='titulo-contenedor-productos-personalizados'>
+                    <h3>Productos al por mayor</h3>
+                </div>
+                <div className='tarjetas-productos-categoria-personalizados'>
+                    <div className="card-principal-productos-personalizados">
+                        <div className="card-imagen-producto">
+
+                            <div className="image-imagen-producto">
+                                <img src="/images/Productos/productos-top/06AR20-1.jpg" alt="" />
+                            </div>
+                            <div className="text-imagen-producto">
+                                <h6>Aretes tejidos</h6>
+                                <p>$20.000</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div className="heading-principal-productos">
+                                <h5>Titúlo producto</h5>
+                                <p>Descripción producto</p>
+                            </div>
+                            <div className='estrellas-corazon'>
+                                <div className="rating">
+                                    <input value="5" name="rating" id="star5" type="radio" />
+                                    <label htmlFor="star5"></label>
+                                    <input value="4" name="rating" id="star4" type="radio" />
+                                    <label htmlFor="star4"></label>
+                                    <input value="3" name="rating" id="star3" type="radio" />
+                                    <label htmlFor="star3"></label>
+                                    <input value="2" name="rating" id="star2" type="radio" />
+                                    <label htmlFor="star2"></label>
+                                    <input value="1" name="rating" id="star1" type="radio" />
+                                    <label htmlFor="star1"></label>
+                                </div>
+                                <div className='corazon-producto'>
+                                    <label className="ui-like">
+                                        <input type="checkbox" />
+                                        <div className="like">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill=""><g stroke-width="0" id="SVGRepo_bgCarrier"></g><g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g><g id="SVGRepo_iconCarrier"><path d="M20.808,11.079C19.829,16.132,12,20.5,12,20.5s-7.829-4.368-8.808-9.421C2.227,6.1,5.066,3.5,8,3.5a4.444,4.444,0,0,1,4,2,4.444,4.444,0,0,1,4-2C18.934,3.5,21.773,6.1,20.808,11.079Z"></path></g></svg>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <Form className='tallas-producto'>
+                                {(["radio"] as Array<"radio" | "checkbox">).map((type) => (
+                                    <div key={`inline-${type}`} className="mb-3">
+                                        <Form.Check
+                                            inline
+                                            label="XS"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-1`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            label="S"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-2`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            disabled
+                                            label="M"
+                                            type={type}
+                                            id={`inline-${type}-3`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            label="L"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-4`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            label="XL"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-5`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            label="XLL"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-6`}
+                                        />
+                                    </div>
+                                ))}
+                                <div className='heading-principal-productos'>
+                                    <a href="">Ver producto</a>
+                                </div>
+                            </Form>
+                        </div>
+                    </div>
+                    <div className="card-principal-productos-personalizados">
+                        <div className="card-imagen-producto">
+
+                            <div className="image-imagen-producto">
+                                <img src="/images/Productos/productos-top/06AR20-1.jpg" alt="" />
+                            </div>
+                            <div className="text-imagen-producto">
+                                <h6>Aretes tejidos</h6>
+                                <p>$20.000</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div className="heading-principal-productos">
+                                <h5>Titúlo producto</h5>
+                                <p>Descripción producto</p>
+                            </div>
+                            <div className='estrellas-corazon'>
+                                <div className="rating">
+                                    <input value="5" name="rating" id="star5" type="radio" />
+                                    <label htmlFor="star5"></label>
+                                    <input value="4" name="rating" id="star4" type="radio" />
+                                    <label htmlFor="star4"></label>
+                                    <input value="3" name="rating" id="star3" type="radio" />
+                                    <label htmlFor="star3"></label>
+                                    <input value="2" name="rating" id="star2" type="radio" />
+                                    <label htmlFor="star2"></label>
+                                    <input value="1" name="rating" id="star1" type="radio" />
+                                    <label htmlFor="star1"></label>
+                                </div>
+                                <div className='corazon-producto'>
+                                    <label className="ui-like">
+                                        <input type="checkbox" />
+                                        <div className="like">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill=""><g stroke-width="0" id="SVGRepo_bgCarrier"></g><g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g><g id="SVGRepo_iconCarrier"><path d="M20.808,11.079C19.829,16.132,12,20.5,12,20.5s-7.829-4.368-8.808-9.421C2.227,6.1,5.066,3.5,8,3.5a4.444,4.444,0,0,1,4,2,4.444,4.444,0,0,1,4-2C18.934,3.5,21.773,6.1,20.808,11.079Z"></path></g></svg>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <Form className='tallas-producto'>
+                                {(["radio"] as Array<"radio" | "checkbox">).map((type) => (
+                                    <div key={`inline-${type}`} className="mb-3">
+                                        <Form.Check
+                                            inline
+                                            label="XS"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-1`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            label="S"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-2`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            disabled
+                                            label="M"
+                                            type={type}
+                                            id={`inline-${type}-3`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            label="L"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-4`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            label="XL"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-5`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            label="XLL"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-6`}
+                                        />
+                                    </div>
+                                ))}
+                                <div className='heading-principal-productos'>
+                                    <a href="">Ver producto</a>
+                                </div>
+                            </Form>
+                        </div>
+                    </div>
+                    <div className="card-principal-productos-personalizados">
+                        <div className="card-imagen-producto">
+
+                            <div className="image-imagen-producto">
+                                <img src="/images/Productos/productos-top/06AR20-1.jpg" alt="" />
+                            </div>
+                            <div className="text-imagen-producto">
+                                <h6>Aretes tejidos</h6>
+                                <p>$20.000</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div className="heading-principal-productos">
+                                <h5>Titúlo producto</h5>
+                                <p>Descripción producto</p>
+                            </div>
+                            <div className='estrellas-corazon'>
+                                <div className="rating">
+                                    <input value="5" name="rating" id="star5" type="radio" />
+                                    <label htmlFor="star5"></label>
+                                    <input value="4" name="rating" id="star4" type="radio" />
+                                    <label htmlFor="star4"></label>
+                                    <input value="3" name="rating" id="star3" type="radio" />
+                                    <label htmlFor="star3"></label>
+                                    <input value="2" name="rating" id="star2" type="radio" />
+                                    <label htmlFor="star2"></label>
+                                    <input value="1" name="rating" id="star1" type="radio" />
+                                    <label htmlFor="star1"></label>
+                                </div>
+                                <div className='corazon-producto'>
+                                    <label className="ui-like">
+                                        <input type="checkbox" />
+                                        <div className="like">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill=""><g stroke-width="0" id="SVGRepo_bgCarrier"></g><g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g><g id="SVGRepo_iconCarrier"><path d="M20.808,11.079C19.829,16.132,12,20.5,12,20.5s-7.829-4.368-8.808-9.421C2.227,6.1,5.066,3.5,8,3.5a4.444,4.444,0,0,1,4,2,4.444,4.444,0,0,1,4-2C18.934,3.5,21.773,6.1,20.808,11.079Z"></path></g></svg>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <Form className='tallas-producto'>
+                                {(["radio"] as Array<"radio" | "checkbox">).map((type) => (
+                                    <div key={`inline-${type}`} className="mb-3">
+                                        <Form.Check
+                                            inline
+                                            label="XS"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-1`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            label="S"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-2`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            disabled
+                                            label="M"
+                                            type={type}
+                                            id={`inline-${type}-3`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            label="L"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-4`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            label="XL"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-5`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            label="XLL"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-6`}
+                                        />
+                                    </div>
+                                ))}
+                                <div className='heading-principal-productos'>
+                                    <a href="">Ver producto</a>
+                                </div>
+                            </Form>
+                        </div>
+                    </div>
+                    <div className="card-principal-productos-personalizados">
+                        <div className="card-imagen-producto">
+
+                            <div className="image-imagen-producto">
+                                <img src="/images/Productos/productos-top/06AR20-1.jpg" alt="" />
+                            </div>
+                            <div className="text-imagen-producto">
+                                <h6>Aretes tejidos</h6>
+                                <p>$20.000</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div className="heading-principal-productos">
+                                <h5>Titúlo producto</h5>
+                                <p>Descripción producto</p>
+                            </div>
+                            <div className='estrellas-corazon'>
+                                <div className="rating">
+                                    <input value="5" name="rating" id="star5" type="radio" />
+                                    <label htmlFor="star5"></label>
+                                    <input value="4" name="rating" id="star4" type="radio" />
+                                    <label htmlFor="star4"></label>
+                                    <input value="3" name="rating" id="star3" type="radio" />
+                                    <label htmlFor="star3"></label>
+                                    <input value="2" name="rating" id="star2" type="radio" />
+                                    <label htmlFor="star2"></label>
+                                    <input value="1" name="rating" id="star1" type="radio" />
+                                    <label htmlFor="star1"></label>
+                                </div>
+                                <div className='corazon-producto'>
+                                    <label className="ui-like">
+                                        <input type="checkbox" />
+                                        <div className="like">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill=""><g stroke-width="0" id="SVGRepo_bgCarrier"></g><g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g><g id="SVGRepo_iconCarrier"><path d="M20.808,11.079C19.829,16.132,12,20.5,12,20.5s-7.829-4.368-8.808-9.421C2.227,6.1,5.066,3.5,8,3.5a4.444,4.444,0,0,1,4,2,4.444,4.444,0,0,1,4-2C18.934,3.5,21.773,6.1,20.808,11.079Z"></path></g></svg>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <Form className='tallas-producto'>
+                                {(["radio"] as Array<"radio" | "checkbox">).map((type) => (
+                                    <div key={`inline-${type}`} className="mb-3">
+                                        <Form.Check
+                                            inline
+                                            label="XS"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-1`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            label="S"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-2`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            disabled
+                                            label="M"
+                                            type={type}
+                                            id={`inline-${type}-3`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            label="L"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-4`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            label="XL"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-5`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            label="XLL"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-6`}
+                                        />
+                                    </div>
+                                ))}
+                                <div className='heading-principal-productos'>
+                                    <a href="">Ver producto</a>
+                                </div>
+                            </Form>
+                        </div>
+                    </div>
+                    <div className="card-principal-productos-personalizados">
+                        <div className="card-imagen-producto">
+
+                            <div className="image-imagen-producto">
+                                <img src="/images/Productos/productos-top/06AR20-1.jpg" alt="" />
+                            </div>
+                            <div className="text-imagen-producto">
+                                <h6>Aretes tejidos</h6>
+                                <p>$20.000</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div className="heading-principal-productos">
+                                <h5>Titúlo producto</h5>
+                                <p>Descripción producto</p>
+                            </div>
+                            <div className='estrellas-corazon'>
+                                <div className="rating">
+                                    <input value="5" name="rating" id="star5" type="radio" />
+                                    <label htmlFor="star5"></label>
+                                    <input value="4" name="rating" id="star4" type="radio" />
+                                    <label htmlFor="star4"></label>
+                                    <input value="3" name="rating" id="star3" type="radio" />
+                                    <label htmlFor="star3"></label>
+                                    <input value="2" name="rating" id="star2" type="radio" />
+                                    <label htmlFor="star2"></label>
+                                    <input value="1" name="rating" id="star1" type="radio" />
+                                    <label htmlFor="star1"></label>
+                                </div>
+                                <div className='corazon-producto'>
+                                    <label className="ui-like">
+                                        <input type="checkbox" />
+                                        <div className="like">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill=""><g stroke-width="0" id="SVGRepo_bgCarrier"></g><g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g><g id="SVGRepo_iconCarrier"><path d="M20.808,11.079C19.829,16.132,12,20.5,12,20.5s-7.829-4.368-8.808-9.421C2.227,6.1,5.066,3.5,8,3.5a4.444,4.444,0,0,1,4,2,4.444,4.444,0,0,1,4-2C18.934,3.5,21.773,6.1,20.808,11.079Z"></path></g></svg>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <Form className='tallas-producto'>
+                                {(["radio"] as Array<"radio" | "checkbox">).map((type) => (
+                                    <div key={`inline-${type}`} className="mb-3">
+                                        <Form.Check
+                                            inline
+                                            label="XS"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-1`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            label="S"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-2`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            disabled
+                                            label="M"
+                                            type={type}
+                                            id={`inline-${type}-3`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            label="L"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-4`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            label="XL"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-5`}
+                                        />
+                                        <Form.Check
+                                            inline
+                                            label="XLL"
+                                            name="group1"
+                                            type={type}
+                                            id={`inline-${type}-6`}
+                                        />
+                                    </div>
+                                ))}
+                                <div className='heading-principal-productos'>
+                                    <a href="">Ver producto</a>
+                                </div>
+                            </Form>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </section>
 
 
