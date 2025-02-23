@@ -9,6 +9,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import { Link } from "react-router-dom";
 
 
 
@@ -37,6 +38,7 @@ const Perfil = () => {
                                 Guardar cambios
                             </Button>
                         </Card.Body>
+                        <Link to="/Historial">Historial de productos</Link>
                     </Card>
                 </div>
                 <div className='acordeon-perfil'>

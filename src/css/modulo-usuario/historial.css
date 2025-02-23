@@ -1,0 +1,16 @@
+@import url("../style.css");
+
+.seccion-tarjetas-productos {
+  display: flex;
+  justify-content: center;
+  width: 90%;
+  height: 40rem;
+  gap: 20px;
+  overflow: auto;
+  flex-wrap: wrap;
+  margin: 20px auto;
+}
+.tarjeta-producto-comprado img {
+  height: 150px;
+  width: auto;
+}

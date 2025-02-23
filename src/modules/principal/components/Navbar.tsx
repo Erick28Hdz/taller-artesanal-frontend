@@ -61,7 +61,7 @@ const navbar = () => {
                                     </NavDropdown.Item>
                                     <NavDropdown.Item href="/Compras">Compras<img src="/images/Iconos/carrito-de-compras.png" alt="" />
                                     </NavDropdown.Item>
-                                    <NavDropdown.Item href="#action/3.2">
+                                    <NavDropdown.Item href="/Envios">
                                         Envios<img src="/images/Iconos/envio.png" alt="" />
                                     </NavDropdown.Item>
                                     <NavDropdown.Item href="/Perfil">Configuración<img src="/images/Iconos/configuracion.png" alt="" /></NavDropdown.Item>

@@ -1,0 +1,33 @@
+@import url("../style.css");
+
+
+/*Sección dropdown de las tallas*/
+.dropdown-tallas{
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 20px;
+}
+
+
+/*Sección tablas de las tallas*/
+.tablas-tallas{
+    width: 80%;
+    margin: auto;
+}
+.categoria-descripcion {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  margin: 20px;
+}
+
+.categoria-descripcion img {
+  width: auto;
+  height: 100px;
+}
+
+  

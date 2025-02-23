@@ -12,21 +12,24 @@ import Remember from "./pages/modulo-registro/Remember";
 /*Modulo Usuarios*/
 import Perfil from "./pages/modulo-usuario/perfil-user";
 import Reseñas from "./pages/modulo-usuario/reseñas";
+import Historial from "./pages/modulo-usuario/historial";
 
 /*Modulo productos*/
 import Categorias from "./pages/modulo-productos/categorias";
 import Productos from "./pages/modulo-productos/productos";
 import Promociones from "./pages/modulo-productos/promociones";
+import Tallas from "./pages/modulo-productos/tallas";
 
 
 /*Modulo Compras*/
-import Carrito from "./pages/modulo-compras/carrito-compras";
+import Compras from "./pages/modulo-compras/carrito-compras";
+import Envios from "./pages/modulo-compras/envios";
 
 /*Layouts predeterminados*/
 import LoginLayout from "./layouts/LoginLayout";
 import MainLayout from "./layouts/MainLayout";
 import SimpleLayout from "./layouts/SimpleLayout";
-import Compras from "./pages/modulo-compras/carrito-compras";
+
 
 
 const App = () => {
@@ -82,6 +85,14 @@ const App = () => {
                     }
                 />
                 <Route
+                    path="/Historial"
+                    element={
+                        <SimpleLayout>
+                            <Historial />
+                        </SimpleLayout>
+                    }
+                />
+                <Route
                     path="/Categorias"
                     element={
                         <SimpleLayout>
@@ -94,6 +105,14 @@ const App = () => {
                     element={
                         <SimpleLayout>
                             < Productos/>
+                        </SimpleLayout>
+                    }
+                />
+                <Route
+                    path="/Tallas"
+                    element={
+                        <SimpleLayout>
+                            < Tallas/>
                         </SimpleLayout>
                     }
                 />
@@ -118,6 +137,14 @@ const App = () => {
                     element={
                         <SimpleLayout>
                             < Compras/>
+                        </SimpleLayout>
+                    }
+                />
+                <Route
+                    path="/Envios"
+                    element={
+                        <SimpleLayout>
+                            < Envios/>
                         </SimpleLayout>
                     }
                 />

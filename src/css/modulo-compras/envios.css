@@ -1,0 +1,62 @@
+@import url("../style.css");
+
+.seccion-envios-principales {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.productos-enviados, .productos-entregados, .productos-devueltos {
+    width: 40%;
+    margin: 20px;
+}
+
+/*Secciones de titulos de los envios*/
+.titulo-productos-enviados,
+.titulo-productos-entregados {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.titulo-productos-enviados h3,
+.titulo-productos-entregados h3 {
+    margin: 0;
+}
+
+.productos-enviados-seccion{
+    overflow-y: auto;
+    height: 20rem;
+    width: 90%;
+    margin: auto;
+}
+.contenido-producto-enviado{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.contenido-producto-enviado img{
+    width: auto;
+    height: 80px;
+}
+/*Secciones de envios iconos*/
+.titulo-productos-enviados img,
+.titulo-productos-entregados img,
+.productos-devueltos img {
+  width: 50px;
+  height: 50px;
+}
+
+
+
+/*Sección porductos devueltos*/
+.productos-devueltos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.productos-devueltos h3 {
+  margin: 0;
+}

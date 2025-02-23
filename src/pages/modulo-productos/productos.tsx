@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "../../css/style.css";
 import "../../css/modulo-productos/productos.css"
 
+
 import Carousel from 'react-bootstrap/Carousel';
 import Form from 'react-bootstrap/Form';
 import Stack from '@mui/material/Stack';
@@ -64,7 +65,7 @@ const Productos = () => {
                             <img src="/images/Iconos/escala.png" alt="" />
                         </div>
                         <div>
-                        <Form className='tallas-producto'>
+                            <Form className='tallas-producto'>
                                 {(["radio"] as Array<"radio" | "checkbox">).map((type) => (
                                     <div key={`inline-${type}`} className="mb-3">
                                         <Form.Check
@@ -111,8 +112,8 @@ const Productos = () => {
                                         />
                                     </div>
                                 ))}
-                                <div className='heading-principal-productos'>
-                                    <a href="">Ver todas las tallas</a>
+                                <div className='heading-principal-productos'>               <Link to="/tallas">Ver todas las tallas</Link>
+
                                 </div>
                             </Form>
                         </div>
