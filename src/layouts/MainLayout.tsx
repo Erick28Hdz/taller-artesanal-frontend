@@ -1,11 +1,11 @@
-import Navbar from "../modules/principal/components/Navbar";
+import NavbarComponent from "../modules/principal/components/Navbar";
 import Footer from "../modules/principal/components/Footer";
 import Hero from "../modules/principal/components/Hero";
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
     return (
       <>
-        <Navbar />
+        <NavbarComponent />
         <Hero/>
         <main>{children}</main>
         <Footer />

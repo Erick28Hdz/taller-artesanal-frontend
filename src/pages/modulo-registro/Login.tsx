@@ -1,62 +1,109 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../css/style.css";
-import "../../css/modulo-registro/Login.css"
-import { Link } from "react-router-dom";
+import "../../css/modulo-registro/Login.css";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
+    const [email, setEmail] = useState("");
+    const [contrasena, setPassword] = useState("");
+    const [error, setError] = useState("");
+    const navigate = useNavigate();
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setError(""); // Limpiar errores previos
+
+        try {
+            const response = await axios.post("http://localhost:3000/api/usuarios/login", {
+                email,
+                contrasena, // Asegúrate de que tu backend espera "password"
+            });
+
+            const { token, usuario } = response.data; // Extraer el token JWT
+
+            localStorage.setItem("token", token); // Guardar el token
+            localStorage.setItem("usuario", JSON.stringify(usuario)); // Guardar usuario (nombre, email, etc.)
+            navigate("/"); // Redirigir al usuario
+
+        } catch (error) {
+            console.error("Error al iniciar sesión:", error);
+            setError("Correo o contraseña incorrectos. Inténtalo de nuevo.");
+        }
+    };
+
     return (
         <section className="seccion-login tienda-virtual">
-            <div
-                className="titulo-login">
-                <img src="/images/Logos/ArteGestion-1.png" alt="" />
+            <div className="titulo-login">
+                <img src="/images/Logos/ArteGestion-1.png" alt="Logo Arte Gestión" />
                 <h2>Arte Gestión</h2>
                 <h1>Taller artesanal</h1>
             </div>
-            <form className="form-login">
+
+            <form className="form-login" onSubmit={handleSubmit}>
                 <div><p className="title">Iniciar sesión</p></div>
+
+                {error && <p className="error-message">{error}</p>} {/* Muestra el error si existe */}
+
                 <div className="flex-column">
-                    <label>Correo electronico </label>
+                    <label htmlFor="email">Correo electrónico</label>
                 </div>
                 <div className="inputForm">
-                    <img src="/images/Iconos/login.png" alt="" />
-                    <input placeholder="Ingresa tú email" className="input" type="email" required />
+                    <img src="/images/Iconos/login.png" alt="Icono email" />
+                    <input 
+                        id="email"
+                        placeholder="Ingresa tu email"
+                        className="input"
+                        type="email"
+                        required
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
                 </div>
+
                 <div className="flex-column">
-                    <label>Contraseña </label>
+                    <label htmlFor="contrasena">Contraseña</label>
                 </div>
                 <div className="inputForm">
-                    <img src="/images/Iconos/bloquear.png" alt="" />
-                    <input placeholder="Ingresa tú contraseña" className="input" type="password" required />
+                    <img src="/images/Iconos/bloquear.png" alt="Icono candado" />
+                    <input 
+                        id="contrasena"
+                        placeholder="Ingresa tu contraseña"
+                        className="input"
+                        type="password"
+                        required
+                        value={contrasena}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
                 </div>
+
                 <div className="flex-row">
                     <div>
-                        <input type="radio" />
-                        <label>Recuerdame </label>
+                        <input type="checkbox" id="remember" />
+                        <label htmlFor="remember">Recuérdame</label>
                     </div>
                     <p className="span">
-                        <Link to="/Remember" className="span">¿Olvidaste la contraseña?</Link>
+                        <Link to="/Remember">¿Olvidaste la contraseña?</Link>
                     </p>
                 </div>
-                <button className="button-submit"><p>Iniciar sesión</p></button>
-                <a className="p" href="">Politicas y condiciones</a>
-                <p className="p">
-                    ¿No tienes una cuenta?
-                    <Link to="/Register" className="span">Registrarse</Link>
-                </p>
+
+                <button type="submit" className="button-submit"><p>Iniciar sesión</p></button>
+                
+                <p className="p">¿No tienes una cuenta? <Link to="/Register" className="span">Registrarse</Link></p>
                 <p className="p line">O ingresa con:</p>
+
                 <div className="flex-row">
-                    <button className="btn google">
-                        <img src="/images/Iconos/google.png" alt="" />
+                    <button type="button" className="btn google">
+                        <img src="/images/Iconos/google.png" alt="Google" />
                         Google
                     </button>
-                    <button className="btn apple">
-                        <img src="/images/Iconos/apple.png" alt="" />
+                    <button type="button" className="btn apple">
+                        <img src="/images/Iconos/apple.png" alt="Apple" />
                         Apple
                     </button>
                 </div>
             </form>
         </section>
-
     );
 };
 
