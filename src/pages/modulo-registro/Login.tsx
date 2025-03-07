@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../css/style.css";
 import "../../css/modulo-registro/Login.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { auth } from "../../config/firebaseConfig";
+import { GoogleAuthProvider, signInWithRedirect, getRedirectResult } from "firebase/auth";
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -10,26 +12,46 @@ const Login = () => {
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
+    useEffect(() => {
+        // Verifica si hay un usuario autenticado tras la redirección de Google
+        getRedirectResult(auth)
+            .then((result) => {
+                if (result?.user) {
+                    console.log("Usuario autenticado con Google:", result.user);
+                    localStorage.setItem("usuario", JSON.stringify(result.user));
+                    navigate("/"); // Redirigir al usuario a la página principal
+                }
+            })
+            .catch((error) => {
+                console.error("Error en la autenticación con Google:", error);
+                setError("Hubo un problema con el inicio de sesión.");
+            });
+    }, [navigate]);
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setError(""); // Limpiar errores previos
+        setError("");
 
         try {
-            const response = await axios.post("http://localhost:3000/api/usuarios/login", {
+            const response = await axios.post("http://localhost:3000/api/login", {
                 email,
-                contrasena, // Asegúrate de que tu backend espera "password"
+                contrasena,
             });
 
-            const { token, usuario } = response.data; // Extraer el token JWT
+            const { token, usuario } = response.data;
+            localStorage.setItem("token", token);
+            localStorage.setItem("usuario", JSON.stringify(usuario));
 
-            localStorage.setItem("token", token); // Guardar el token
-            localStorage.setItem("usuario", JSON.stringify(usuario)); // Guardar usuario (nombre, email, etc.)
-            navigate("/"); // Redirigir al usuario
-
+            navigate("/");
         } catch (error) {
             console.error("Error al iniciar sesión:", error);
-            setError("Correo o contraseña incorrectos. Inténtalo de nuevo.");
+            setError("Correo o contraseña incorrectos.");
         }
+    };
+
+    const handleGoogleLogin = async () => {
+        const provider = new GoogleAuthProvider();
+        await signInWithRedirect(auth, provider);
     };
 
     return (
@@ -43,14 +65,14 @@ const Login = () => {
             <form className="form-login" onSubmit={handleSubmit}>
                 <div><p className="title">Iniciar sesión</p></div>
 
-                {error && <p className="error-message">{error}</p>} {/* Muestra el error si existe */}
+                {error && <p className="error-message">{error}</p>}
 
                 <div className="flex-column">
                     <label htmlFor="email">Correo electrónico</label>
                 </div>
                 <div className="inputForm">
                     <img src="/images/Iconos/login.png" alt="Icono email" />
-                    <input 
+                    <input
                         id="email"
                         placeholder="Ingresa tu email"
                         className="input"
@@ -66,7 +88,7 @@ const Login = () => {
                 </div>
                 <div className="inputForm">
                     <img src="/images/Iconos/bloquear.png" alt="Icono candado" />
-                    <input 
+                    <input
                         id="contrasena"
                         placeholder="Ingresa tu contraseña"
                         className="input"
@@ -88,12 +110,12 @@ const Login = () => {
                 </div>
 
                 <button type="submit" className="button-submit"><p>Iniciar sesión</p></button>
-                
+
                 <p className="p">¿No tienes una cuenta? <Link to="/Register" className="span">Registrarse</Link></p>
                 <p className="p line">O ingresa con:</p>
 
                 <div className="flex-row">
-                    <button type="button" className="btn google">
+                    <button type="button" className="btn google" onClick={handleGoogleLogin}>
                         <img src="/images/Iconos/google.png" alt="Google" />
                         Google
                     </button>

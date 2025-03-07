@@ -5,6 +5,8 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { useState } from "react";
+import { auth } from "../../config/firebaseConfig";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 const Register = () => {
     const [formData, setFormData] = useState({
@@ -54,6 +56,43 @@ const Register = () => {
         }
     };
 
+    const handleGoogleAuth = async () => {
+        const provider = new GoogleAuthProvider();
+        try {
+            const result = await signInWithPopup(auth, provider);
+            console.log("Usuario autenticado con Google:", result.user);
+    
+            // Obtener datos básicos de Google
+            const userData = {
+                nombre: result.user.displayName?.split(" ")[0] || "", 
+                apellido: result.user.displayName?.split(" ")[1] || "", 
+                email: result.user.email,
+                telefono: result.user.phoneNumber || "",  // Puede ser vacío si no lo proporciona
+                foto: result.user.photoURL || "",  // Guardar foto de perfil si la necesitas
+            };
+    
+            // Enviar los datos al backend
+            const response = await fetch("http://localhost:3000/api/usuarios", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(userData),
+            });
+    
+            const data = await response.json();
+            if (response.ok) {
+                alert("Registro exitoso 🎉");
+            } else {
+                console.error("Error en registro:", data);
+                alert("Error en el registro: " + data.error);
+            }
+        } catch (error) {
+            console.error("Error en autenticación con Google:", error);
+        }
+    };
+    
+
     return (
         <section className="seccion-login tienda-virtual">
             <div className="titulo-login">
@@ -77,32 +116,6 @@ const Register = () => {
                         <div className="inputForm">
                             <img src="/images/Iconos/Identidad.png" alt="Identidad" />
                             <input name="apellido" placeholder="Apellidos completos" className="input" type="text" onChange={handleChange} required />
-                        </div>
-                    </div>
-
-                    <div className="flex-column">
-                        <label>Género</label>
-                        <div className="inputForm">
-                            <select name="genero" className="input" onChange={handleChange} required>
-                                <option value="">Seleccione su género</option>
-                                <option value="masculino">Masculino</option>
-                                <option value="femenino">Femenino</option>
-                                <option value="otro">Otro</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div className="flex-column">
-                        <label>Fecha de nacimiento</label>
-                        <div className="inputForm">
-                            <input name="fecha_nacimiento" type="date" className="input" onChange={handleChange} required />
-                        </div>
-                    </div>
-
-                    <div className="flex-column">
-                        <label>Documento de identidad</label>
-                        <div className="inputForm">
-                            <input name="documento" placeholder="Número de documento" className="input" type="text" onChange={handleChange} required />
                         </div>
                     </div>
 
@@ -148,12 +161,6 @@ const Register = () => {
                     </Modal>
 
                     <div className="flex-column">
-                        <label>Teléfono</label>
-                        <div className="inputForm">
-                            <input name="telefono" placeholder="Número de teléfono" className="input" type="tel" onChange={handleChange} />
-                        </div>
-                    </div>
-                    <div className="flex-column">
                         <label>Contraseña</label>
                         <div className="inputForm">
                             <input
@@ -162,7 +169,6 @@ const Register = () => {
                                 className="input"
                                 type="password"
                                 onChange={handleChange}
-                                required
                             />
                         </div>
                     </div>
@@ -180,7 +186,7 @@ const Register = () => {
                 <p className="p line">O regístrate con:</p>
 
                 <div className="flex-row">
-                    <button type="button" className="btn google">
+                    <button type="button" className="btn google" onClick={handleGoogleAuth}>
                         <img src="/images/Iconos/google.png" alt="Google" />
                         Google
                     </button>
