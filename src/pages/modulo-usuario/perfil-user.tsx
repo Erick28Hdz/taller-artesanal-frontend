@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 
 
 const Perfil = () => {
+    const backendURL = "http://localhost:3000";
     // Estado para los datos del usuario
     const [formData, setFormData] = useState({
         id_usuario: "",
@@ -17,68 +18,80 @@ const Perfil = () => {
         email: "",
         fecha_nacimiento: "",
         genero: "",
-
         pais: "",
         ciudad: "",
         provincia: "",
         direccion: "",
         ubicacion: "",
         codigo_postal: "",
-        imagen_perfil: "",
+        imagen_perfil: "", // URL de la imagen
     });
+
+    const [imagePreview, setImagePreview] = useState<string>("/images/Iconos/avatar.png");
+    const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
     // Cargar datos del usuario desde localStorage
     useEffect(() => {
         const usuarioData = localStorage.getItem("usuario");
         if (usuarioData) {
-            setFormData(JSON.parse(usuarioData));
+            const parsedUser = JSON.parse(usuarioData);
+            setFormData(parsedUser);
+
+            // 📌 Construir la URL de la imagen correctamente
+            if (parsedUser.imagen_perfil) {
+                setImagePreview(`${backendURL}/uploads/${parsedUser.imagen_perfil}`);
+            }
         }
     }, []);
 
     // Manejar cambios en los inputs
-    const handleChange = (e: React.ChangeEvent<any>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         setFormData({
             ...formData,
             [e.target.name]: e.target.value
         });
     };
 
-    const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        });
+    // Manejar selección de archivo
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            setSelectedFile(file); // Guarda el archivo real para enviarlo
+            setImagePreview(URL.createObjectURL(file)); // Vista previa
+        }
     };
 
-    // Guardar cambios en localStorage y enviar a backend si es necesario
+    // Subir imagen y actualizar usuario
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault(); // Evita que la página se recargue
+        e.preventDefault();
 
         try {
-            const token = localStorage.getItem("token"); // Obtener token
-            const usuario = JSON.parse(localStorage.getItem("usuario") || "{}");
+            const token = localStorage.getItem("token");
+            if (!token) {
+                alert("No se encontró el token. Inicia sesión nuevamente.");
+                return;
+            }
 
-            console.log("Usuario desde localStorage:", usuario); // Verificar datos obtenidos
-            console.log("ID Usuario:", usuario.id_usuario); // Verificar ID
-
-            if (!usuario.id_usuario) {
+            if (!formData.id_usuario) {
                 alert("Error: ID de usuario no encontrado.");
                 return;
             }
 
-            // --- 1️⃣ Primero, enviamos la imagen si se seleccionó ---
-            let imageUrl = usuario.imagen_perfil; // Si el usuario ya tiene imagen, la mantenemos
+            let imageUrl = formData.imagen_perfil; // Mantener la imagen actual si no hay cambios
 
-            if (selectedFile) { // Si hay una nueva imagen seleccionada
-                const formData = new FormData();
-                formData.append("imagen_perfil", selectedFile); // Agregar archivo
-
-                const imageResponse = await fetch(`http://localhost:3001/api/usuarios/upload/${usuario.id_usuario}/imagen`, {
-                    method: "PUT",
+            // --- 📌 1️⃣ Subir imagen si se seleccionó una nueva ---
+            if (selectedFile) {
+                const formDataImage = new FormData();
+                formDataImage.append("imagen", selectedFile); // 📌 Clave correcta según el backend
+                
+                const imageMethod = formData.imagen_perfil ? "PUT" : "POST"; // Si tiene imagen, usar PUT, si no, POST
+                
+                const imageResponse = await fetch(`${backendURL}/api/usuarios/${formData.id_usuario}/imagen`, {
+                    method: imageMethod, // Cambia a POST si el usuario no tiene imagen previa
                     headers: {
                         "Authorization": `Bearer ${token}`
                     },
-                    body: formData
+                    body: formDataImage
                 });
 
                 if (!imageResponse.ok) {
@@ -86,56 +99,39 @@ const Perfil = () => {
                 }
 
                 const imageData = await imageResponse.json();
-                imageUrl = imageData.imageUrl; // Guardamos la URL de la imagen devuelta por el backend
+                imageUrl = imageData.imageUrl; // URL de la imagen devuelta por el backend
+                console.log(imageData); // Ver qué URL está devolviendo
             }
 
-            // --- 2️⃣ Ahora, enviamos los otros datos del usuario ---
-            const userData = { ...formData, imagenPerfil: imageUrl }; // Incluir la imagen en los datos
+            // --- 📌 2️⃣ Actualizar información del usuario ---
+            const userData = { ...formData, imagen_perfil: imageUrl }; // Incluir la nueva imagen
 
-            const response = await fetch(`http://localhost:3001/api/usuarios/${usuario.id_usuario}`, {
+            const response = await fetch(`${backendURL}/api/usuarios/${formData.id_usuario}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${token}`
                 },
-                body: JSON.stringify(userData) // Enviar los datos actualizados
+                body: JSON.stringify(userData)
             });
-
-            console.log("Estado de la respuesta:", response.status);
 
             if (!response.ok) {
                 throw new Error(`Error al actualizar usuario: ${response.status}`);
             }
 
-            const data = response.status !== 204 ? await response.json() : null;
+            alert("Usuario actualizado correctamente.");
 
-            if (data && data.message) {
-                alert(data.message);
-            } else {
-                alert("Usuario actualizado correctamente.");
+            // Guardar en localStorage la nueva información
+            localStorage.setItem("usuario", JSON.stringify(userData));
+
+            // 📌 Actualizar la vista previa de la imagen
+            if (imageUrl) {
+                setImagePreview(`${backendURL}/uploads/${imageUrl}`);
             }
 
         } catch (error) {
             console.error("Error:", error);
             alert("Hubo un problema al actualizar la información.");
-        }
-    };
-
-
-    const [imagePreview, setImagePreview] = useState<string>("/images/Iconos/avatar.png");
-    const [selectedFile, setSelectedFile] = useState<File | null>(null);
-
-    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0]; // Obtiene el primer archivo
-        if (file) {
-            setSelectedFile(file); // Guarda el archivo real para enviarlo al backend
-            setImagePreview(URL.createObjectURL(file)); // Solo para vista previa
-
-            // Si necesitas actualizar formData, solo guarda el nombre del archivo
-            setFormData((prev) => ({
-                ...prev,
-                imagen_perfil: file.name, // Guarda solo el nombre del archivo
-            }));
         }
     };
 
@@ -147,7 +143,8 @@ const Perfil = () => {
             <div className='seccion-perfil'>
                 <div className='avatar-perfil'>
                     <Card style={{ width: '18rem' }}>
-                        <Card.Img variant="top" src={imagePreview} />
+                        {/* Imagen de perfil */}
+                        <Card.Img variant="top" src={imagePreview} alt="Foto de perfil" />
                         <Card.Body>
                             <h3>{formData.apellido} {formData.nombre}</h3>
                             <Card.Text>
@@ -178,9 +175,10 @@ const Perfil = () => {
                                             <Form.Group>
                                                 <Form.Label>Nombres</Form.Label>
                                                 <Form.Control
+                                                    type="text"
                                                     name="nombre"
                                                     value={formData.nombre}
-                                                    onChange={handleChange}
+                                                    onChange={(e) => handleChange(e as React.ChangeEvent<HTMLInputElement>)}
                                                     placeholder="Ingresa tus nombres"
                                                     required
                                                 />
@@ -188,7 +186,7 @@ const Perfil = () => {
                                                 <Form.Control
                                                     name="apellido"
                                                     value={formData.apellido}
-                                                    onChange={handleChange}
+                                                    onChange={(e) => handleChange(e as React.ChangeEvent<HTMLInputElement>)}
                                                     placeholder="Ingresa tus apellidos"
                                                     required
                                                 />
@@ -201,7 +199,7 @@ const Perfil = () => {
                                                     name="email"
                                                     type="email"
                                                     value={formData.email}
-                                                    onChange={handleChange}
+                                                    onChange={(e) => handleChange(e as React.ChangeEvent<HTMLInputElement>)}
                                                     placeholder="Ingresa tu email"
                                                     required
                                                 />
@@ -216,7 +214,7 @@ const Perfil = () => {
                                                     name="fecha_nacimiento"
                                                     type="date"
                                                     value={formData.fecha_nacimiento}
-                                                    onChange={handleChange}
+                                                    onChange={(e) => handleChange(e as React.ChangeEvent<HTMLInputElement>)}
                                                     required
                                                 />
                                             </Form.Group>
@@ -227,7 +225,7 @@ const Perfil = () => {
                                                 <Form.Select
                                                     name="genero"
                                                     value={formData.genero}
-                                                    onChange={handleSelectChange}
+                                                    onChange={handleChange}
                                                 >
                                                     <option value="">Selecciona tu género</option>
                                                     <option value="Femenino">Femenino</option>
@@ -310,7 +308,7 @@ const Perfil = () => {
                                                     placeholder="Ingresa tu país"
                                                     name="pais"
                                                     value={formData.pais}
-                                                    onChange={handleChange}
+                                                    onChange={(e) => handleChange(e as React.ChangeEvent<HTMLInputElement>)}
                                                     required
                                                 />
                                             </Form.Group>
@@ -322,7 +320,7 @@ const Perfil = () => {
                                                     className='input'
                                                     name="provincia"
                                                     value={formData.provincia}
-                                                    onChange={handleChange}
+                                                    onChange={(e) => handleChange(e as React.ChangeEvent<HTMLInputElement>)}
                                                     required
                                                 />
                                             </Form.Group>
@@ -355,7 +353,7 @@ const Perfil = () => {
                                                         placeholder="Dirección local"
                                                         name="direccion"
                                                         value={formData.direccion}
-                                                        onChange={handleChange}
+                                                        onChange={(e) => handleChange(e as React.ChangeEvent<HTMLInputElement>)}
                                                         required
                                                     />
                                                 </Form.Group>
@@ -368,7 +366,7 @@ const Perfil = () => {
                                                         placeholder="Lugar residencial"
                                                         name="ubicacion"
                                                         value={formData.ubicacion}
-                                                        onChange={handleChange}
+                                                        onChange={(e) => handleChange(e as React.ChangeEvent<HTMLInputElement>)}
                                                         required
                                                     />
                                                 </Form.Group>
@@ -380,7 +378,7 @@ const Perfil = () => {
                                                         className='input'
                                                         name="codigo_postal"
                                                         value={formData.codigo_postal}
-                                                        onChange={handleChange}
+                                                        onChange={(e) => handleChange(e as React.ChangeEvent<HTMLInputElement>)}
                                                         required
                                                     />
                                                 </Form.Group>

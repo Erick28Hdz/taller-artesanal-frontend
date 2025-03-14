@@ -13,11 +13,7 @@ const Register = () => {
         nombre: "",
         apellido: "",
         email: "",
-        telefono: "",
         contrasena: "",
-        genero: "",
-        fecha_nacimiento: "",
-        documento: "",
     });
 
     const [show, setShow] = useState(false);

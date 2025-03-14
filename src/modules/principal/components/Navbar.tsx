@@ -18,10 +18,10 @@ const NavbarComponent = () => {
     // Función para obtener el usuario desde el backend
     const obtenerUsuario = async () => {
         const token = localStorage.getItem("token");
-        if (!token) return; // Si no hay token, no se obtiene usuario
+        if (!token) return; 
     
         try {
-            const response = await fetch("http://localhost:3000/api/usuarios", {
+            const response = await fetch("http://localhost:3000/api/perfil", { // <== Usa /api/perfil
                 method: "GET",
                 headers: {
                     "Authorization": `Bearer ${token}`,
@@ -33,23 +33,16 @@ const NavbarComponent = () => {
                 throw new Error("Error al obtener usuario");
             }
     
-            const data = await response.json();
-            console.log("Respuesta del backend:", data);
+            const usuario = await response.json();
+            console.log("Respuesta del backend:", usuario); // <== Verifica en la consola
     
-            if (!Array.isArray(data) || data.length === 0) {
-                throw new Error("No se encontró información del usuario");
-            }
-    
-            const usuario = data[0]; // Accede al primer usuario
-            localStorage.setItem("usuario", JSON.stringify(usuario)); // Guarda en localStorage
-            setNombreUsuario(usuario.nombre || "Invitadx"); // Actualiza estado
+            localStorage.setItem("usuario", JSON.stringify(usuario));
+            setNombreUsuario(usuario.nombre || "Invitadx"); 
         } catch (error) {
             console.error("Error al obtener usuario:", error);
-            localStorage.removeItem("usuario"); // Limpia datos inválidos
+            localStorage.removeItem("usuario");
         }
     };
-
-    
 
     const handleLogout = () => {
         localStorage.removeItem("token");
