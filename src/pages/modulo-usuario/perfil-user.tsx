@@ -30,19 +30,31 @@ const Perfil = () => {
     const [imagePreview, setImagePreview] = useState<string>("/images/Iconos/avatar.png");
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
-    // Cargar datos del usuario desde localStorage
     useEffect(() => {
         const usuarioData = localStorage.getItem("usuario");
         if (usuarioData) {
             const parsedUser = JSON.parse(usuarioData);
             setFormData(parsedUser);
 
-            // 📌 Construir la URL de la imagen correctamente
-            if (parsedUser.imagen_perfil) {
-                setImagePreview(`${backendURL}/uploads/${parsedUser.imagen_perfil}`);
-            }
+            // 🔍 DEPURACIÓN: Ver la ruta guardada
+            console.log("📌 Imagen guardada en localStorage:", parsedUser.imagen_perfil);
         }
-    }, []);
+    }, []); // No modificamos la dependencia aquí
+
+    // Nuevo useEffect solo para actualizar la imagen
+    useEffect(() => {
+        if (formData.imagen_perfil) {
+            // 📌 Si la ruta no es completa, corregirla
+            const imageUrl = formData.imagen_perfil.startsWith("/")
+                ? `${backendURL}/uploads/usuarios/imagenPerfil/${formData.imagen_perfil.split("/").pop()}`
+                : formData.imagen_perfil;
+
+            setImagePreview(imageUrl);
+
+            // 🔍 DEPURACIÓN: Mostrar la URL corregida
+            console.log("📌 URL final de la imagen:", imageUrl);
+        }
+    }, [formData.imagen_perfil]); // Solo depende de `formData.imagen_perfil`
 
     // Manejar cambios en los inputs
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -79,34 +91,43 @@ const Perfil = () => {
 
             let imageUrl = formData.imagen_perfil; // Mantener la imagen actual si no hay cambios
 
-            // --- 📌 1️⃣ Subir imagen si se seleccionó una nueva ---
+            // 📌 1️⃣ Subir imagen si se seleccionó una nueva
             if (selectedFile) {
                 const formDataImage = new FormData();
-                formDataImage.append("imagen", selectedFile); // 📌 Clave correcta según el backend
-                
-                const imageMethod = formData.imagen_perfil ? "PUT" : "POST"; // Si tiene imagen, usar PUT, si no, POST
-                
-                const imageResponse = await fetch(`${backendURL}/api/usuarios/${formData.id_usuario}/imagen`, {
-                    method: imageMethod, // Cambia a POST si el usuario no tiene imagen previa
+                formDataImage.append("imagen", selectedFile); // Clave correcta
+
+                const response = await fetch(`${backendURL}/api/usuarios/${formData.id_usuario}/imagen`, {
+                    method: "POST",
                     headers: {
                         "Authorization": `Bearer ${token}`
                     },
                     body: formDataImage
                 });
 
-                if (!imageResponse.ok) {
-                    throw new Error(`Error al subir imagen: ${imageResponse.status}`);
+                if (!response.ok) {
+                    throw new Error(`Error al subir imagen: ${response.status}`);
                 }
 
-                const imageData = await imageResponse.json();
-                imageUrl = imageData.imageUrl; // URL de la imagen devuelta por el backend
-                console.log(imageData); // Ver qué URL está devolviendo
+                const data = await response.json();// 📌 Asegúrate de obtener el JSON correctamente
+                console.log("🔹 Respuesta del backend:", data); // 🔍 DEPURACIÓN
+
+                if (data.imageUrl) {
+                    // 💡 Extraer solo la ruta relativa eliminando el dominio (backendURL)
+                    const relativePath = data.imageUrl.replace(backendURL, ""); // Elimina "http://localhost:3000"
+
+                    imageUrl = relativePath; // Guarda solo la ruta relativa
+                    setImagePreview(`${backendURL}${relativePath}`); // Muestra la imagen correctamente en el frontend
+
+                    console.log("📌 Nueva ruta relativa guardada:", relativePath); // 🔍 DEPURACIÓN
+                } else {
+                    console.error("❌ No se recibió imageUrl en la respuesta del backend");
+                }
             }
 
-            // --- 📌 2️⃣ Actualizar información del usuario ---
+            // 📌 2️⃣ Actualizar información del usuario
             const userData = { ...formData, imagen_perfil: imageUrl }; // Incluir la nueva imagen
 
-            const response = await fetch(`${backendURL}/api/usuarios/${formData.id_usuario}`, {
+            const updateResponse = await fetch(`${backendURL}/api/usuarios/${formData.id_usuario}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -115,25 +136,33 @@ const Perfil = () => {
                 body: JSON.stringify(userData)
             });
 
-            if (!response.ok) {
-                throw new Error(`Error al actualizar usuario: ${response.status}`);
+            if (!updateResponse.ok) {
+                throw new Error(`Error al actualizar usuario: ${updateResponse.status}`);
             }
 
-            alert("Usuario actualizado correctamente.");
-
-            // Guardar en localStorage la nueva información
+            // 📌 1️⃣ Guardar en localStorage la nueva información antes de actualizar el estado
             localStorage.setItem("usuario", JSON.stringify(userData));
 
-            // 📌 Actualizar la vista previa de la imagen
-            if (imageUrl) {
-                setImagePreview(`${backendURL}/uploads/${imageUrl}`);
-            }
+            // 📌 2️⃣ Actualizar el estado correctamente
+            setFormData(prevState => ({
+                ...prevState,
+                imagen_perfil: imageUrl
+            }));
+
+            // 📌 3️⃣ Usar un "cache-buster" para que la imagen se refresque sin recargar la página
+            setImagePreview(`${backendURL}${imageUrl}?t=${new Date().getTime()}`);
+
+            // 🔍 DEPURACIÓN: Mostrar la imagen final en consola
+            console.log("✅ Imagen actualizada en el estado y localStorage:", imageUrl);
 
         } catch (error) {
             console.error("Error:", error);
             alert("Hubo un problema al actualizar la información.");
         }
+
+        alert("Usuario actualizado correctamente.");
     };
+
 
     return (
         <main className='perfil-usuario tienda-virtual'>

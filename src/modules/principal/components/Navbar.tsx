@@ -123,6 +123,7 @@ const NavbarComponent = () => {
                                                 Envíos<img src="/images/Iconos/envio.png" alt="" />
                                             </NavDropdown.Item>
                                             <NavDropdown.Item as={Link} to="/Perfil">Configuración<img src="/images/Iconos/configuracion.png" alt="" /></NavDropdown.Item>
+                                            <NavDropdown.Item as={Link} to="/Dashboard">Administración<img src="/images/Iconos/configuracion.png" alt="" /></NavDropdown.Item>
                                             <NavDropdown.Divider />
                                             <NavDropdown.Item onClick={handleLogout}>
                                                 Cerrar sesión <img src="/images/Iconos/cerrar-sesion.png" alt="" />
