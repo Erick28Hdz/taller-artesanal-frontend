@@ -1,6 +1,20 @@
+.dashboard-container{
+    display: flex;
+}
+
 .panel-control{
     background-color: var(--color-primario);
-    width: 30%;
+    width: 20%;
     margin: 10px;
     border-radius: 10px;
 }
+
+.panel-dropdown{
+    text-align: start;
+}
+
+.contenido-panel {
+    width: 75%; /* 75% del ancho */
+    padding: 20px;
+    overflow-y: auto;
+  }
