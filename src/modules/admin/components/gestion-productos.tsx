@@ -51,6 +51,17 @@ const GestionProductos: React.FC<GestionProductosProps> = ({ selectedProducto })
         console.log("Producto actualizado:", productoEditado);
     };
 
+    // Manejar eliminación del producto
+    const handleEliminarProducto = () => {
+        if (!productoSeleccionado) return;
+
+        const nuevaLista = productos.filter(prod => prod.id_producto !== productoSeleccionado.id_producto);
+        setProductos(nuevaLista);
+        setProductoSeleccionado(null);
+
+        console.log("Producto eliminado:", productoSeleccionado);
+    };
+    
     useEffect(() => {
         if (selectedProducto === "lista") {
             setLoading(true);
@@ -173,6 +184,49 @@ const GestionProductos: React.FC<GestionProductosProps> = ({ selectedProducto })
                     <div className="card">
                         <h3>❌ Eliminar Producto</h3>
                         <p>Productos eliminados este mes: 5</p>
+
+                        <select onChange={(e) => {
+                            console.log("ID seleccionado:", e.target.value); // 🔹 Verifica qué valor se selecciona
+                            const producto = productos.find(prod => prod.id_producto === Number(e.target.value));
+                            if (producto) setProductoSeleccionado(producto);
+                        }}>
+                            <option value="">Selecciona un producto</option>
+                            {productos.map((prod) => (
+                                <option key={prod.id_producto} value={prod.id_producto}>
+                                    {prod.nombre}
+                                </option>
+                            ))}
+                        </select>
+
+                        {productoSeleccionado && (
+                        <>
+                            <FormularioUniversal
+                                titulo="Editar Producto"
+                                campos={[
+                                    { nombre: "codigo", etiqueta: "Código", tipo: "text" },
+                                    { nombre: "nombre", etiqueta: "Nombre del Producto", tipo: "text" },
+                                    { nombre: "descripcion", etiqueta: "Descripción", tipo: "text" },
+                                    { nombre: "precio", etiqueta: "Precio", tipo: "number" },
+                                    { nombre: "stock", etiqueta: "Stock", tipo: "number" },
+                                    { nombre: "tipo_producto", etiqueta: "Tipo de Producto", tipo: "text" },
+                                    { nombre: "referencia", etiqueta: "Referencia", tipo: "text" },
+                                    { nombre: "estado", etiqueta: "Estado", tipo: "select", opciones: ["Disponible", "Agotado", "Descontinuado"] },
+                                    { nombre: "popularidad", etiqueta: "Popularidad", tipo: "number" },
+                                    { nombre: "fecha_creacion", etiqueta: "Fecha de Creación", tipo: "date" },
+                                    { nombre: "categoria", etiqueta: "Categoría", tipo: "select", opciones: ["Electrónica", "Ropa", "Hogar", "Alimentos"] },
+                                    { nombre: "proveedor", etiqueta: "Proveedor", tipo: "text" },
+                                    { nombre: "marca", etiqueta: "Marca", tipo: "text" },
+                                    { nombre: "descuento", etiqueta: "Descuento (%)", tipo: "number" },
+                                    { nombre: "tags", etiqueta: "Tags (separados por comas)", tipo: "text" }
+                                ]}
+                                valoresIniciales={productoSeleccionado}
+                                onSubmit={handleEditarProducto}
+                            />
+                            <button onClick={handleEliminarProducto} style={{ backgroundColor: "red", color: "white", marginTop: "10px" }}>
+                            ❌ Eliminar Producto
+                        </button>
+                    </>
+                        )}
                     </div>
                 </div>
             ) : selectedProducto === "buscar" ? (
