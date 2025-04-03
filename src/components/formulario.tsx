@@ -1,21 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../css/formulario.css"; 
 
 interface CampoFormulario {
   nombre: string;
   etiqueta: string;
-  tipo: string; // "text", "number", "date", "select", etc.
-  opciones?: string[]; // Para selects
+  tipo: string;
+  opciones?: string[];
 }
 
 interface FormularioProps {
   titulo: string;
   campos: CampoFormulario[];
+  valoresIniciales?: any;
   onSubmit: (datos: any) => void;
 }
 
-const FormularioUniversal: React.FC<FormularioProps> = ({ titulo, campos, onSubmit }) => {
-  const [formData, setFormData] = useState<any>({});
+const FormularioUniversal: React.FC<FormularioProps> = ({ titulo, campos, valoresIniciales, onSubmit }) => {
+  const [formData, setFormData] = useState<any>(valoresIniciales || {});
+
+  // 🔹 Actualizar formData si valoresIniciales cambia
+  useEffect(() => {
+    setFormData(valoresIniciales || {});
+  }, [valoresIniciales]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -33,13 +39,13 @@ const FormularioUniversal: React.FC<FormularioProps> = ({ titulo, campos, onSubm
         <div key={campo.nombre}>
           <label>{campo.etiqueta}</label>
           {campo.tipo === "select" ? (
-            <select name={campo.nombre} onChange={handleChange}>
+            <select name={campo.nombre} value={formData[campo.nombre] || ""} onChange={handleChange}>
               {campo.opciones?.map((opcion) => (
                 <option key={opcion} value={opcion}>{opcion}</option>
               ))}
             </select>
           ) : (
-            <input type={campo.tipo} name={campo.nombre} onChange={handleChange} />
+            <input type={campo.tipo} name={campo.nombre} value={formData[campo.nombre] || ""} onChange={handleChange} />
           )}
         </div>
       ))}
@@ -49,3 +55,4 @@ const FormularioUniversal: React.FC<FormularioProps> = ({ titulo, campos, onSubm
 };
 
 export default FormularioUniversal;
+

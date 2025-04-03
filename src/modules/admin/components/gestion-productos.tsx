@@ -6,7 +6,6 @@ import FormularioUniversal from "../../../components/formulario";
 interface GestionProductosProps {
     selectedProducto: string;
 }
-
 interface Producto {
     id_producto: number;
     codigo: string;
@@ -163,6 +162,7 @@ const GestionProductos: React.FC<GestionProductosProps> = ({ selectedProducto })
                                     { nombre: "descuento", etiqueta: "Descuento (%)", tipo: "number" },
                                     { nombre: "tags", etiqueta: "Tags (separados por comas)", tipo: "text" }
                                 ]}
+                                valoresIniciales={productoSeleccionado}
                                 onSubmit={handleEditarProducto}
                             />
                         )}
