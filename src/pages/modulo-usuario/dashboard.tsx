@@ -204,7 +204,7 @@ const Dashboard = () => {
     setSelectedConfiguracion(null);
     setSelectedCategoria(null);
   };
-
+  
   return (
     <div className="tienda-virtual dashboard-container">
       <section className="panel-control">
