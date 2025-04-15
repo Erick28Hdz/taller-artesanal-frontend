@@ -1,67 +1,121 @@
-import React from "react";
+// GestionUsuarios.tsx
+import React, { useEffect, useState } from "react";
 import "../styles/panel-principal.css";
+import "../styles/card.admin.css"
+import { Usuario } from "../types/usuario";
+import Tabs from "../../../components/tabs";
 
-interface GestionUsuariosProps {
-    selectedUsuario: string;
-}
+import ListaUsuarios from "./gestion-usuarios/ListaUsuarios";
+import AsignarRoles from "./gestion-usuarios/AsignarRoles";
+import BuscarUsuario from "./gestion-usuarios/BusquedaUsuario";
+import EditarUsuario from "./gestion-usuarios/EditarUsuario";
+import EliminarUsuario from "./gestion-usuarios/EliminarUsuario";
 
-const sectionContent: Record<string, React.ReactNode> = {
-    listaUsuarios: (
+const GestionUsuarios: React.FC = () => {
+  const [usuarios, setUsuarios] = useState<Usuario[]>([]);
+  const [roles, setRoles] = useState<{ id_rol: number; nombre: string; descripcion: string }[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+  const [tabSeleccionado, setTabSeleccionado] = useState<string>("Lista");
+
+  useEffect(() => {
+    setLoading(true); // Asegúrate de que el loading esté activado antes de la solicitud
+    // Obtienes ambos usuarios y roles en una sola petición, si es posible
+    Promise.all([
+      fetch("http://localhost:3000/api/usuarios").then((res) => {
+        if (!res.ok) throw new Error("Error al obtener los usuarios");
+        return res.json();
+      }),
+      fetch("http://localhost:3000/api/roles").then((res) => {
+        if (!res.ok) throw new Error("Error al obtener los roles");
+        return res.json();
+      }),
+    ])
+      .then(([usuariosData, rolesData]) => {
+        setUsuarios(usuariosData);
+        setRoles(rolesData); // Aquí sets both usuarios and roles
+        setLoading(false); // No olvides desactivar el loading
+      })
+      .catch((err) => {
+        setError(err.message); // Si ocurre algún error, lo mostramos
+        setLoading(false);
+      });
+  }, []);  // Se ejecuta una sola vez cuando el componente se monta
+
+
+  return (
+    <div className="gestion-usuarios">
+      <h2>👥 Gestión de Usuarios y Roles</h2>
+      <p>Administra usuarios registrados, roles y permisos desde aquí.</p>
+
+      <Tabs
+        opciones={["Lista", "Asignar Roles", "Busqueda", "Editar", "Eliminar"]}
+        valorInicial="Lista"
+        onChange={(valor) => setTabSeleccionado(valor)}
+      />
+
+      {tabSeleccionado === "Lista" && (
         <section className="dashboard-cards">
-            <div className="card">
-                <h3>📋 Ver lista de usuarios</h3>
-                <p>Total: 120</p>
-            </div>
+          <div className="card-admin">
+            <ListaUsuarios usuarios={usuarios} loading={loading} error={error} />
+            <br />
+            <p>Total: {usuarios.length} usuarios</p>
+          </div>
         </section>
-    ),
-    asignarRoles: (
-        <div className="dashboard-cards">
-            <div className="card">
-                <h3>🎭 Asignar roles</h3>
-                <p>Total: 8</p>
-            </div>
-        </div>
-    ),
-    detallesUsuario: (
-        <div className="dashboard-cards">
-            <div className="card">
-                <h3>📑 Ver detalles del usuario</h3>
-                <p>Información detallada</p>
-            </div>
-        </div>
-    ),
-    editarUsuario: (
-        <div className="dashboard-cards">
-            <div className="card">
-                <h3>✏️ Editar información del usuario</h3>
-                <p>Modificar datos personales</p>
-            </div>
-        </div>
-    ),
-    eliminarUsuario: (
-        <div className="dashboard-cards">
-            <div className="card">
-                <h3>🚫 Suspender o eliminar usuario</h3>
-                <p>Total suspendidos: 10</p>
-            </div>
-        </div>
-    ),
-};
-
-const GestionUsuarios: React.FC<GestionUsuariosProps> = ({ selectedUsuario }) => {
-    return (
-        <div className="gestion-usuarios">
-            <h2>👥 Gestión de Usuarios y Roles</h2>
-            <p>Bienvenidx al panel de administración. Aquí puedes gestionar los usuarios de tu sistema.</p>
-            
-            {/* 📌 Contenido dinámico basado en la selección */}
-            {sectionContent[selectedUsuario] ?? (
-                <div className="dashboard-cards">
-                    {Object.values(sectionContent)}
-                </div>
-            )}
-        </div>
-    );
+      )}
+      {tabSeleccionado === "Asignar Roles" && (
+        <section className="dashboard-cards">
+          <div className="card-admin">
+            <AsignarRoles
+              loading={loading}
+              error={error}
+              roles={roles} // Agregas los roles aquí
+            />
+            <br />
+          </div>
+        </section>
+      )}
+      {tabSeleccionado === "Busqueda" && (
+        <section className="dashboard-cards">
+          <div className="card-admin">
+            <BuscarUsuario
+              usuarios={usuarios}
+              setUsuarios={setUsuarios}
+              loading={loading}
+              error={error}
+            />
+            <br />
+          </div>
+        </section>
+      )}
+      {tabSeleccionado === "Editar" && (
+        <section className="dashboard-cards">
+          <div className="card-admin">
+            <EditarUsuario
+              usuarios={usuarios}
+              setUsuarios={setUsuarios}
+              loading={loading}
+              error={error}
+            />
+            <br />
+          </div>
+        </section>
+      )}
+      {tabSeleccionado === "Eliminar" && (
+        <section className="dashboard-cards">
+          <div className="card-admin">
+            <EliminarUsuario
+              usuarios={usuarios}
+              setUsuarios={setUsuarios}
+              loading={loading}
+              error={error}
+            />
+            <br />
+          </div>
+        </section>
+      )}
+    </div>
+  );
 };
 
 export default GestionUsuarios;

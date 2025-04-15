@@ -50,27 +50,27 @@ const Footer = () => {
           </div>
           <div className="logos-redsoc">
             <a href="https://www.facebook.com/share/1AQmKKWybD/" target="_blank" rel="noopener noreferrer">
-              <button className="button facebook">
+              <button className="buttonrs facebook">
                 <img src="/images/Iconos/facebook.png" alt="facebook" />
               </button>
                </a>
             <a href="https://www.instagram.com/4rte.gestion?igsh=M3pzemEyb3MyNGZk">
-            <button className="button instagram">
+            <button className="buttonrs instagram">
               <img src="/images/Iconos/instagram.png" alt="instagram" />
             </button>
             </a>
             <a href="https://wa.me/message/EYJGBDZ4BRPYN1">
-            <button className="button whatsapp">
+            <button className="buttonrs whatsapp">
               <img src="/images/Iconos/whatsapp.png" alt="whatsapp" />
             </button>
             </a>
             <a href="https://youtube.com/@artegestion9043?si=1MQppdtmGk7FGnZB">
-            <button className="button youtube">
+            <button className="buttonrs youtube">
               <img src="/images/Iconos/youtube.png" alt="youtube" />
             </button>
             </a>
             <a href="https://www.tiktok.com/@4rtegestion?_t=ZS-8t9fliVTpMW&_r=1">
-            <button className="button tiktok">
+            <button className="buttonrs tiktok">
               <img src="/images/Iconos/tik-tok.png" alt="tiktok" />
             </button>
             </a>

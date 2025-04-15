@@ -1,58 +1,66 @@
-import React, { useState, useEffect } from "react";
-import "../css/formulario.css"; 
+import React from "react";
+import Input from "./input";
+import Select from "./select";
+import "../css/formulario.css";
 
 interface CampoFormulario {
   nombre: string;
   etiqueta: string;
   tipo: string;
-  opciones?: string[];
+  opciones?: { valor: string | number; etiqueta: string }[];
+  placeholder?: string; 
 }
 
 interface FormularioProps {
   titulo: string;
   campos: CampoFormulario[];
-  valoresIniciales?: any;
+  valoresIniciales: any;
+  onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
   onSubmit: (datos: any) => void;
 }
 
-const FormularioUniversal: React.FC<FormularioProps> = ({ titulo, campos, valoresIniciales, onSubmit }) => {
-  const [formData, setFormData] = useState<any>(valoresIniciales || {});
-
-  // 🔹 Actualizar formData si valoresIniciales cambia
-  useEffect(() => {
-    setFormData(valoresIniciales || {});
-  }, [valoresIniciales]);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+const FormularioUniversal: React.FC<FormularioProps> = ({
+  titulo,
+  campos,
+  valoresIniciales,
+  onChange,
+  onSubmit,
+}) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit(formData);
+    onSubmit(valoresIniciales); // ← ya no usamos estado interno
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="formulario">
       <h2>{titulo}</h2>
-      {campos.map((campo) => (
-        <div key={campo.nombre}>
-          <label>{campo.etiqueta}</label>
-          {campo.tipo === "select" ? (
-            <select name={campo.nombre} value={formData[campo.nombre] || ""} onChange={handleChange}>
-              {campo.opciones?.map((opcion) => (
-                <option key={opcion} value={opcion}>{opcion}</option>
-              ))}
-            </select>
-          ) : (
-            <input type={campo.tipo} name={campo.nombre} value={formData[campo.nombre] || ""} onChange={handleChange} />
-          )}
-        </div>
-      ))}
-      <button type="submit">Guardar</button>
+
+      <div className="contenedor-campos">
+        {campos.map((campo) => (
+          <div key={campo.nombre} className="campo">
+            {campo.tipo !== "select" ? (
+              <Input
+                name={campo.nombre}
+                type={campo.tipo}
+                value={valoresIniciales[campo.nombre] || ""}
+                placeholder={campo.etiqueta}
+                onChange={onChange}
+              />
+            ) : (
+              <Select
+                name={campo.nombre}
+                value={valoresIniciales[campo.nombre] || ""}
+                onChange={onChange}
+                placeholder={campo.etiqueta}
+                options={campo.opciones || []}
+              />
+            )}
+          </div>
+        ))}
+      </div>
     </form>
   );
 };
 
 export default FormularioUniversal;
-

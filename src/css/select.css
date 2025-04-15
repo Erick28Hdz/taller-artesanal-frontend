@@ -1,0 +1,59 @@
+.select-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 200px;
+}
+
+.select {
+  width: 100%;
+  height: 45px;
+  border: none;
+  outline: none;
+  padding: 0px 7px;
+  border: 2px solid var(--color-primario);
+  border-radius: 5px;
+  color: var(--color-primario);
+  font-size: 15px;
+  font-family: var(--letra-textos);
+  font-weight: 600;
+  background-color: var(--color-cuaternario2);
+  box-shadow: 2px 2px 10px var(--color-primario),
+    -1px -1px 6px var(--color-primario);
+  transition: 0.3s ease-in-out;
+  appearance: none; /* Oculta el estilo nativo del select */
+  cursor: pointer;
+}
+
+/* Flecha personalizada */
+.select-container::after {
+  content: "▼";
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  font-size: 12px;
+  pointer-events: none;
+  color: var(--color-primario);
+}
+
+/* Efecto cuando el select está enfocado */
+.select:focus {
+  border: 2px solid var(--color-secundario);
+  color: var(--color-terciario);
+  font-size: 15px;
+  font-family: var(--letra-textos);
+  font-weight: 600;
+  padding-left: 10px;
+  box-shadow: 3px 3px 10px var(--color-primario),
+    -1px -1px 6px var(--color-secundario),
+    inset 3px 3px 10px var(--color-primario),
+    inset -1px -1px 6px var(--color-secundario);
+}
+
+.select option {
+  background-color: var(--color-terciario); /* Fondo del dropdown */
+  color: var(--color-cuaternario2); /* Color del texto */
+  font-size: 15px;
+  font-weight: 600;
+  font-family: var(--letra-textos);
+}

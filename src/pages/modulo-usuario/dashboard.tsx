@@ -4,7 +4,7 @@ import "../../css/modulo-usuario/dashboard.css";
 import Dropdown from "react-bootstrap/Dropdown";
 import PanelPrincipal from "../../modules/admin/components/panel-principal";
 import GestionCategorias from "../../modules/admin/components/gestion-categorias";
-import GestionProductos from "../../modules/admin/components/gestion-productos";
+import GestionProductos from "../../modules/admin/gestion-productos/gestion-productos";
 import GestionPedidos from "../../modules/admin/components/gestion-pedidos";
 import GestionUsuarios from "../../modules/admin/components/gestion-usuarios";
 import GestionVendedores from "../../modules/admin/components/gestion-vendedores";
@@ -106,13 +106,13 @@ const Dashboard = () => {
     setSelectedSection(null);
     setSelectedCategoria(null);
     setSelectedProducto(null);
-    setSelectedUsuario(null);
     setSelectedVendedor(null);
     setSelectedEstadisticas(null);
     setSelectedOfertas(null);
     setSelectedSoporte(null);
     setSelectedConfiguracion(null);
     setSelectedMarketing(null);
+    setSelectedPedido(null);
   };
 
   // Función para manejar la selección de vendedores
@@ -353,11 +353,11 @@ const Dashboard = () => {
         ) : selectedCategoria ? (
           <GestionCategorias selectedCategoria={selectedCategoria} />
         ) : selectedProducto ? (
-          <GestionProductos selectedProducto={selectedProducto} />
+          <GestionProductos/>
         ) : selectedPedido ? (
           <GestionPedidos selectedPedido={selectedPedido} />
         ) : selectedUsuario ? (
-          <GestionUsuarios selectedUsuario={selectedUsuario} />
+          <GestionUsuarios/>
         ) : selectedVendedor ? (
           <GestionVendedores selectedVendedor={selectedVendedor} />
         ) : selectedEstadisticas ? (

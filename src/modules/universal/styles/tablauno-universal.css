@@ -1,0 +1,66 @@
+@import "../../../css/style.css";
+
+/* Contenedor de la tabla responsiva (maneja el scroll en X) */
+.table-responsive {
+    max-width: 100%;
+    overflow-x: auto; /* Habilitar desplazamiento horizontal */
+    padding: 10px;
+    margin: 5px; 
+    background: var(--color-terciario);
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px var(--color-primario);
+}
+
+/* Personalización del scroll */
+.table-responsive::-webkit-scrollbar {
+    height: 8px;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+    background: var(--color-cuaternario2);
+    border-radius: 4px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+    background: var(--color-secundario);
+    border-radius: 5px;
+}
+
+/* Estilos específicos para la tabla */
+#tabla-universal {
+    min-width: 100%; /* Evitar que sea más pequeña que el contenedor */
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+/* Encabezado de la tabla */
+#tabla-universal .titulos-tabla-universal th {
+    background-color: var(--color-cuaternario);
+    color: var(--color-cuaternario2);
+    text-align: center; /* Centra horizontalmente */
+    vertical-align: middle; /* Centra verticalmente */
+    padding: 10px 20px; /* Espaciado interno para mejor estética */
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */ 
+    border: 1px solid var(--color-primario); /* Color del borde */
+    font-family: var(--letra-subtitulos);
+}
+
+#tabla-universal .titulos-tabla-universal th:hover {  
+    background-color: var(--color-secundario); /* Color al hacer hover */
+    color: var(--color-cuaternario2); /* Color del texto al hacer hover */
+    cursor: pointer; /* Cambia el cursor a una mano para indicar interactividad */
+    transition: background-color 0.3s ease-in-out; /* Animación suave */
+}
+
+/* Estilos generales de las celdas */
+#tabla-universal tbody td {
+    background-color: var(--color-cuaternario2); /* Color de fondo */
+    padding: 10px; /* Espaciado interno */
+    text-align: center; /* Centrar contenido horizontalmente */
+    vertical-align: middle; /* Centrar contenido verticalmente */
+    border: 1px solid var(--color-cuaternario); /* Color del borde */
+    border-bottom: 3px solid var(--color-primario); /* Línea separadora */
+    font-size: 14px; /* Tamaño del texto */
+    font-family: var(--letra-parrafos); /* Fuente del texto */
+}
+

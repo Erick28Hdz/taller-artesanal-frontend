@@ -204,38 +204,38 @@ input::placeholder, textarea::placeholder  {
     transition: 0.1s;
   }
   
-  .button img {
+  .buttonrs img {
     width: 30px;
     height: 30px;
     object-fit: contain;
     z-index: 9;
   }
 
-  .button.facebook {
+  .buttonrs .facebook {
     background: linear-gradient(45deg, #1877F2, #3b5998);
   }
 
-  .button.instagram {
+  .buttonrs .instagram {
     background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF, #515BD4);
   }
 
-  .button.whatsapp {
+  .buttonrs .whatsapp {
     background: linear-gradient(45deg, #25D366, #075E54);
   }
     
-  .button.youtube {
+  .buttonrs .youtube {
     background: linear-gradient(45deg, #FF0000, #D31A1A);
   }
   
-  .button.tiktok {
+  .buttonrs .tiktok {
     background: linear-gradient(45deg, #FE2C55, #25F4EE);
   }
   
-  .button:active {
+  .buttonrs:active {
     transform: scale(0.85);
   }
   
-  .button::before {
+  .buttonrs::before {
     content: "";
     position: absolute;
     width: 47px;
@@ -246,7 +246,7 @@ input::placeholder, textarea::placeholder  {
     transition: 0.4s;
   }
   
-  .button:hover::before {
+  .buttonrs:hover::before {
     width: 0px;
     height: 0px;
   }

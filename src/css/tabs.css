@@ -1,0 +1,83 @@
+.tabs {
+  --radius: 8px;
+  --border: 4px;
+  --height: 48px;
+  --speed: 0.25s;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  background: var(--color-primario);
+  border-radius: var(--radius);
+  border: var(--border) solid black;
+  position: relative;
+}
+
+/* Soporte para diferentes cantidades de tabs */
+.tabs-2 { --count: 2; }
+.tabs-3 { --count: 3; }
+.tabs-4 { --count: 4; }
+.tabs-5 { --count: 5; }
+.tabs-6 { --count: 6; }
+
+.active-0 { --active: 0; }
+.active-1 { --active: 1; }
+.active-2 { --active: 2; }
+.active-3 { --active: 3; }
+.active-4 { --active: 4; }
+.active-5 { --active: 5; }
+
+.tabs > .input,
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.tabs .label {
+  position: relative; /* Permite z-index */
+  z-index: 1; /* Sobre el ::after */
+  padding: 0 clamp(10px, 10px + 10px, 20px);
+  cursor: pointer;
+  text-align: center;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  border-radius: calc(var(--radius) - var(--border));
+  color: var(--color-secundario);
+  font-family: var(--letra-subtitulo2);
+  background-color: transparent;
+  transition: all 0.25s ease-in-out;
+}
+
+/* Hover */
+.input:not(:checked) + .label:hover {
+  background: #333;
+  color: white;
+}
+
+/* ✅ Texto negro cuando está seleccionado */
+.input:checked + .label {
+  color: var(--color-cuaternario2);
+}
+
+.tabs::after {
+  pointer-events: none;
+  content: "";
+  width: calc(100% / var(--count));
+  height: 100%;
+  background: var(--color-terciario); /* Rojo brillante */
+  position: absolute;
+  border-radius: calc(var(--radius) - var(--border));
+  translate: calc(var(--active, 0) * 100%) 0;
+  transition: translate, outline-color;
+  transition-duration: var(--speed);
+  transition-timing-function: var(--ease, ease);
+  outline: 2px solid transparent;
+  z-index: 0; /* Fondo detrás del texto */
+}
