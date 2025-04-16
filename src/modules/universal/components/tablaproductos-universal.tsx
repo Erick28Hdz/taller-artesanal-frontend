@@ -4,25 +4,7 @@ import Table from "react-bootstrap/Table";
 import Spinner from "react-bootstrap/Spinner";
 import Alert from "react-bootstrap/Alert";
 import "../styles/tablauno-universal.css"
-
-interface Producto {
-  id_producto: number;
-  codigo: string;
-  nombre: string;
-  descripcion: string;
-  precio: number;
-  stock: number;
-  tipo_producto: string;
-  referencia: string;
-  estado: string;
-  popularidad: number;
-  fecha_creacion: string;
-  categoria: string;
-  proveedor: string;
-  marca: string;
-  descuento: number;
-  tags: string[];
-}
+import { Producto } from "../../admin/types/productos"; // Asegúrate de que la ruta sea correcta
 
 interface ProductosTableProps {
   productos: Producto[]; // Recibe los productos como prop

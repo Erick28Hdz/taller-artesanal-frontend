@@ -1,5 +1,4 @@
 import React from "react";
-import "../styles/panel-principal.css";
 import Table from 'react-bootstrap/Table';
 
 interface PanelPrincipalProps {

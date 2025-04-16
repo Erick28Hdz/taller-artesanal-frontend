@@ -1,15 +1,14 @@
 // GestionUsuarios.tsx
 import React, { useEffect, useState } from "react";
-import "../styles/panel-principal.css";
-import "../styles/card.admin.css"
-import { Usuario } from "../types/usuario";
-import Tabs from "../../../components/tabs";
+import "../../styles/card.admin.css"
+import { Usuario } from "../../types/usuario"; // Asegúrate de que la ruta sea correcta
+import Tabs from "../../../../components/tabs";
 
-import ListaUsuarios from "./gestion-usuarios/ListaUsuarios";
-import AsignarRoles from "./gestion-usuarios/AsignarRoles";
-import BuscarUsuario from "./gestion-usuarios/BusquedaUsuario";
-import EditarUsuario from "./gestion-usuarios/EditarUsuario";
-import EliminarUsuario from "./gestion-usuarios/EliminarUsuario";
+import ListaUsuarios from "./ListaUsuarios";
+import AsignarRoles from "./AsignarRoles";
+import BuscarUsuario from "./BusquedaUsuario";
+import EditarUsuario from "./EditarUsuario";
+import EliminarUsuario from "./EliminarUsuario";
 
 const GestionUsuarios: React.FC = () => {
   const [usuarios, setUsuarios] = useState<Usuario[]>([]);

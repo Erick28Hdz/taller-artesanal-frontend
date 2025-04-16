@@ -3,11 +3,11 @@ import "../../css/style.css";
 import "../../css/modulo-usuario/dashboard.css";
 import Dropdown from "react-bootstrap/Dropdown";
 import PanelPrincipal from "../../modules/admin/components/panel-principal";
-import GestionCategorias from "../../modules/admin/components/gestion-categorias";
-import GestionProductos from "../../modules/admin/gestion-productos/gestion-productos";
+import GestionCategorias from "../../modules/admin/components/gestion-categorias/gestion-categorias";
+import GestionProductos from "../../modules/admin/components/gestion-productos/gestion-productos";
 import GestionPedidos from "../../modules/admin/components/gestion-pedidos";
-import GestionUsuarios from "../../modules/admin/components/gestion-usuarios";
-import GestionVendedores from "../../modules/admin/components/gestion-vendedores";
+import GestionUsuarios from "../../modules/admin/components/gestion-usuarios/gestion-usuarios";
+import GestionVendedores from "../../modules/admin/components/gestion-vendedores/gestion-vendedores";
 import GestionEstadisticas from "../../modules/admin/components/estadisticas";
 import GestionOfertas from "../../modules/admin/components/ofertas-descuentos";
 import GestionSoporte from "../../modules/admin/components/soporte";
@@ -204,7 +204,7 @@ const Dashboard = () => {
     setSelectedConfiguracion(null);
     setSelectedCategoria(null);
   };
-  
+
   return (
     <div className="tienda-virtual dashboard-container">
       <section className="panel-control">
@@ -227,7 +227,30 @@ const Dashboard = () => {
               ))}
             </Dropdown.Menu>
           </Dropdown>
-
+          <Dropdown>
+            <Dropdown.Toggle variant="success" id="dropdown-usuarios">
+              👥 Gestión de Usuarios
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              {["listaUsuarios", "asignarRoles", "detallesUsuario", "editarUsuario", "eliminarUsuario"].map((key) => (
+                <Dropdown.Item key={key} onClick={() => handleSelectUsuario(key as UsuarioKey)}>
+                  {key.charAt(0).toUpperCase() + key.slice(1)}
+                </Dropdown.Item>
+              ))}
+            </Dropdown.Menu>
+          </Dropdown>
+          <Dropdown>
+            <Dropdown.Toggle variant="success" id="dropdown-vendedores">
+              🏪 Gestión de Vendedores
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              {["listaVendedores", "detallesVendedores", "productosVendedores", "pagosVendedores", "rendimiendoVendedor"].map((key) => (
+                <Dropdown.Item key={key} onClick={() => handleSelectVendedor(key as VendedorKey)}>
+                  {key.charAt(0).toUpperCase() + key.slice(1)}
+                </Dropdown.Item>
+              ))}
+            </Dropdown.Menu>
+          </Dropdown>
           <Dropdown>
             <Dropdown.Toggle variant="success" id="dropdown-categorias">
               📂 Gestión de Categorías
@@ -266,33 +289,6 @@ const Dashboard = () => {
               ))}
             </Dropdown.Menu>
           </Dropdown>
-
-          <Dropdown>
-            <Dropdown.Toggle variant="success" id="dropdown-usuarios">
-              👥 Gestión de Usuarios
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              {["listaUsuarios", "asignarRoles", "detallesUsuario", "editarUsuario", "eliminarUsuario"].map((key) => (
-                <Dropdown.Item key={key} onClick={() => handleSelectUsuario(key as UsuarioKey)}>
-                  {key.charAt(0).toUpperCase() + key.slice(1)}
-                </Dropdown.Item>
-              ))}
-            </Dropdown.Menu>
-          </Dropdown>
-
-          <Dropdown>
-            <Dropdown.Toggle variant="success" id="dropdown-vendedores">
-              🏪 Gestión de Vendedores
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              {["listaVendedores", "detallesVendedores", "productosVendedores", "pagosVendedores", "rendimiendoVendedor"].map((key) => (
-                <Dropdown.Item key={key} onClick={() => handleSelectVendedor(key as VendedorKey)}>
-                  {key.charAt(0).toUpperCase() + key.slice(1)}
-                </Dropdown.Item>
-              ))}
-            </Dropdown.Menu>
-          </Dropdown>
-
           <Dropdown>
             <Dropdown.Toggle variant="success">📊 Estadísticas</Dropdown.Toggle>
             <Dropdown.Menu>
@@ -307,9 +303,9 @@ const Dashboard = () => {
           <Dropdown>
             <Dropdown.Toggle variant="success">🏷️ Ofertas</Dropdown.Toggle>
             <Dropdown.Menu>
-              {["crearCupon", "configurarPromocion"].map((key) => (                 <Dropdown.Item key={key} onClick={() => handleSelectOfertas(key as OfertaKey)}>
-                  {key.charAt(0).toUpperCase() + key.slice(1)}
-                </Dropdown.Item>
+              {["crearCupon", "configurarPromocion"].map((key) => (<Dropdown.Item key={key} onClick={() => handleSelectOfertas(key as OfertaKey)}>
+                {key.charAt(0).toUpperCase() + key.slice(1)}
+              </Dropdown.Item>
               ))}
             </Dropdown.Menu>
           </Dropdown>
@@ -317,9 +313,9 @@ const Dashboard = () => {
           <Dropdown>
             <Dropdown.Toggle variant="success">📩 Soporte</Dropdown.Toggle>
             <Dropdown.Menu>
-              {["verConsultas", "gestionarTickets"].map((key) => (                 <Dropdown.Item key={key} onClick={() => handleSelectSoporte(key as SoporteKey)}>
-                  {key.charAt(0).toUpperCase() + key.slice(1)}
-                </Dropdown.Item>
+              {["verConsultas", "gestionarTickets"].map((key) => (<Dropdown.Item key={key} onClick={() => handleSelectSoporte(key as SoporteKey)}>
+                {key.charAt(0).toUpperCase() + key.slice(1)}
+              </Dropdown.Item>
               ))}
             </Dropdown.Menu>
           </Dropdown>
@@ -327,9 +323,9 @@ const Dashboard = () => {
           <Dropdown>
             <Dropdown.Toggle variant="success">⚙️ Configuración</Dropdown.Toggle>
             <Dropdown.Menu>
-              {["configuracionpagos", "configuracionenvios", "configuracionidiomas", "configuracionseguridad"].map((key) => (                 <Dropdown.Item key={key} onClick={() => handleSelectConfiguracion(key as ConfiguracionKey)}>
-                  {key.charAt(0).toUpperCase() + key.slice(1)}
-                </Dropdown.Item>
+              {["configuracionpagos", "configuracionenvios", "configuracionidiomas", "configuracionseguridad"].map((key) => (<Dropdown.Item key={key} onClick={() => handleSelectConfiguracion(key as ConfiguracionKey)}>
+                {key.charAt(0).toUpperCase() + key.slice(1)}
+              </Dropdown.Item>
               ))}
             </Dropdown.Menu>
           </Dropdown>
@@ -337,9 +333,9 @@ const Dashboard = () => {
           <Dropdown>
             <Dropdown.Toggle variant="success">🔥 Marketing</Dropdown.Toggle>
             <Dropdown.Menu>
-              {["marketingoptimizacion", "marketingredes", "marketingautomatizacion", "marketing"].map((key) => (                 <Dropdown.Item key={key} onClick={() => handleSelectMarketing(key as MarketingKey)}>
-                  {key.charAt(0).toUpperCase() + key.slice(1)}
-                </Dropdown.Item>
+              {["marketingoptimizacion", "marketingredes", "marketingautomatizacion", "marketing"].map((key) => (<Dropdown.Item key={key} onClick={() => handleSelectMarketing(key as MarketingKey)}>
+                {key.charAt(0).toUpperCase() + key.slice(1)}
+              </Dropdown.Item>
               ))}
             </Dropdown.Menu>
           </Dropdown>
@@ -350,16 +346,16 @@ const Dashboard = () => {
       <section className="contenido-panel">
         {selectedSection ? (
           <PanelPrincipal selectedSection={selectedSection} />
-        ) : selectedCategoria ? (
-          <GestionCategorias selectedCategoria={selectedCategoria} />
+        ) : selectedUsuario ? (
+          <GestionUsuarios />
         ) : selectedProducto ? (
-          <GestionProductos/>
+          <GestionProductos />
         ) : selectedPedido ? (
           <GestionPedidos selectedPedido={selectedPedido} />
-        ) : selectedUsuario ? (
-          <GestionUsuarios/>
+        ) : selectedCategoria ? (
+          <GestionCategorias />
         ) : selectedVendedor ? (
-          <GestionVendedores selectedVendedor={selectedVendedor} />
+          <GestionVendedores />
         ) : selectedEstadisticas ? (
           <GestionEstadisticas selectedEstadisticas={selectedEstadisticas} />
         ) : selectedOfertas ? (
