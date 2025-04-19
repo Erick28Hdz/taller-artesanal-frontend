@@ -1,7 +1,7 @@
 // EditarUsuario.tsx
 import React, { useState } from "react";
 import { Usuario } from "../../types/usuario";
-import UsuariosTable from "../../../universal/components/tablausuarios-universal";
+import UsuariosTable from "./tablausuarios-universal";
 import FormularioUniversal from "../../../../components/formulario";
 import Boton from "../../../../components/boton";
 import Input from "../../../../components/input";
@@ -35,18 +35,23 @@ const EditarUsuario: React.FC<EditarUsuarioProps> = ({ usuarios, setUsuarios, lo
     if (!usuarioSeleccionado) return;
   
     try {
-      // ✅ Eliminar "rol" sin usar delete
       const { rol, ...usuarioLimpio } = usuarioSeleccionado;
   
-      console.log("Usuario actualizado:", usuarioLimpio);
+      const response = await fetch(`http://localhost:3000/api/usuarios/${usuarioLimpio.id_usuario}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(usuarioLimpio),
+      });
   
+      if (!response.ok) throw new Error("Error al actualizar el usuario");
+  
+      const usuarioActualizado = await response.json();
       setUsuarios((prev) =>
-        prev.map((u) =>
-          u.id_usuario === usuarioLimpio.id_usuario ? usuarioLimpio : u
-        )
+        prev.map((u) => (u.id_usuario === usuarioActualizado.id_usuario ? usuarioActualizado : u))
       );
-  
-     // si estás usando esto para formulario
+      alert("Usuario actualizado con éxito");
     } catch (err) {
       console.error("Error al actualizar usuario:", err);
     }
@@ -85,7 +90,7 @@ const EditarUsuario: React.FC<EditarUsuarioProps> = ({ usuarios, setUsuarios, lo
         <>
 
           <FormularioUniversal
-            titulo="Editar Usuario"
+            titulo=""
             campos={[
               { nombre: "nombre", tipo: "text", etiqueta: "Nombre", placeholder: "Nombre" },
               { nombre: "apellido", tipo: "text", etiqueta: "Apellido", placeholder: "Apellido" },
@@ -119,9 +124,9 @@ const EditarUsuario: React.FC<EditarUsuarioProps> = ({ usuarios, setUsuarios, lo
                   { valor: "", etiqueta: "Selecciona un rol" },
                   { valor: 1, etiqueta: "Admin" },
                   { valor: 2, etiqueta: "Cliente" },
-                  { valor: 3, etiqueta: "Moderador" },
-                  { valor: 4, etiqueta: "Soporte" },
-                  { valor: 5, etiqueta: "Vendedor" }
+                  { valor: 4, etiqueta: "Moderador" },
+                  { valor: 5, etiqueta: "Soporte" },
+                  { valor: 3, etiqueta: "Vendedor" }
                 ]
               }
             ]}

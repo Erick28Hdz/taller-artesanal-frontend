@@ -1,7 +1,7 @@
 // EliminarCategoria.tsx
 import React, { useState } from "react";
 import { Categoria } from "../../types/categoria";
-import CategoriasTable from "../../../universal/components/tablacategorias-universal";
+import CategoriasTable from "./tablacategorias-universal";
 import Boton from "../../../../components/boton";
 import Input from "../../../../components/input";
 
@@ -20,23 +20,30 @@ const EliminarCategoria: React.FC<EliminarCategoriaProps> = ({ categorias, setCa
       alert("Por favor selecciona una categoría para eliminar.");
       return;
     }
-
+  
     const confirmacion = window.confirm(`¿Estás seguro de eliminar la categoría "${categoriaSeleccionada.nombre}" con ID ${categoriaSeleccionada.id_categoria}?`);
     if (!confirmacion) return;
-
+  
     try {
-      // Aquí podrías hacer una petición DELETE o PATCH a tu backend
-      console.log("Eliminando categoría:", categoriaSeleccionada);
-
-      // Simulación de eliminación
+      const response = await fetch(`http://localhost:3000/api/categorias/${categoriaSeleccionada.id_categoria}`, {
+        method: "DELETE",
+      });
+  
+      if (!response.ok) {
+        throw new Error("Error al eliminar la categoría");
+      }
+  
+      // Elimina la categoría localmente si todo salió bien
       setCategorias((prev) =>
         prev.filter((c) => c.id_categoria !== categoriaSeleccionada.id_categoria)
       );
-
+  
       setCategoriaSeleccionada(null); // Limpiar selección
-
+  
+      alert("✅ Categoría eliminada correctamente");
     } catch (err) {
-      console.error("Error al eliminar categoría:", err);
+      console.error("❌ Error al eliminar categoría:", err);
+      alert("❌ No se pudo eliminar la categoría");
     }
   };
 

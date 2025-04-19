@@ -1,6 +1,6 @@
 import React from "react";
 import { Usuario } from "../../types/usuario";
-import UsuariosTable from "../../../universal/components/tablausuarios-universal";
+import VendedoresTable from "./tablavendedor-universal";
 
 interface ListaVendedoresProps {
   usuarios: Usuario[];
@@ -16,7 +16,7 @@ const ListaVendedores: React.FC<ListaVendedoresProps> = ({ usuarios, loading, er
       <h3>🛍️ Lista de Vendedores</h3>
       {loading && <p>Cargando vendedores...</p>}
       {error && <p>Error: {error}</p>}
-      <UsuariosTable usuarios={vendedores} loading={loading} error={error} />
+      <VendedoresTable vendedores={vendedores} loading={loading} error={error} />
     </div>
   );
 };

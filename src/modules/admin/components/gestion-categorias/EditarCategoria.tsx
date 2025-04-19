@@ -1,7 +1,7 @@
 // EditarCategoria.tsx
 import React, { useState } from "react";
 import { Categoria } from "../../types/categoria";
-import CategoriasTable from "../../../universal/components/tablacategorias-universal";
+import CategoriasTable from "./tablacategorias-universal";
 import FormularioUniversal from "../../../../components/formulario";
 import Boton from "../../../../components/boton";
 import Input from "../../../../components/input";
@@ -13,11 +13,16 @@ interface EditarCategoriaProps {
   error: string | null;
 }
 
-const EditarCategoria: React.FC<EditarCategoriaProps> = ({ categorias, setCategorias, loading, error }) => {
+const EditarCategoria: React.FC<EditarCategoriaProps> = ({
+  categorias,
+  setCategorias,
+  loading,
+  error
+}) => {
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState<Categoria | null>(null);
 
   const formatearFecha = (fecha: string) => {
-    return new Date(fecha).toISOString().split("T")[0]; // "YYYY-MM-DD"
+    return new Date(fecha).toISOString().split("T")[0];
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -33,26 +38,41 @@ const EditarCategoria: React.FC<EditarCategoriaProps> = ({ categorias, setCatego
 
   const handleGuardar = async () => {
     if (!categoriaSeleccionada) return;
-
+  
     try {
-      console.log("Categoría actualizada:", categoriaSeleccionada);
-
+      const response = await fetch(`http://localhost:3000/api/categorias/${categoriaSeleccionada.id_categoria}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(categoriaSeleccionada),
+      });
+  
+      if (!response.ok) {
+        throw new Error("Error al actualizar la categoría");
+      }
+  
+      const categoriaActualizada = await response.json();
+  
+      // Actualiza el estado local
       setCategorias((prev) =>
         prev.map((c) =>
-          c.id_categoria === categoriaSeleccionada.id_categoria ? categoriaSeleccionada : c
+          c.id_categoria === categoriaActualizada.id_categoria ? categoriaActualizada : c
         )
       );
-
+  
+      alert("✅ Categoría actualizada correctamente");
     } catch (err) {
-      console.error("Error al actualizar categoría:", err);
+      console.error("❌ Error al actualizar categoría:", err);
+      alert("❌ No se pudo actualizar la categoría");
     }
   };
 
   const categoriaFormateada = categoriaSeleccionada
     ? {
         ...categoriaSeleccionada,
-        fecha_creacion: formatearFecha(categoriaSeleccionada.fecha_creacion),
-        fecha_actualizacion: formatearFecha(categoriaSeleccionada.fecha_actualizacion),
+        created_at: formatearFecha(categoriaSeleccionada.created_at),
+        updated_at: formatearFecha(categoriaSeleccionada.updated_at),
       }
     : null;
 
@@ -66,7 +86,7 @@ const EditarCategoria: React.FC<EditarCategoriaProps> = ({ categorias, setCatego
 
       <div style={{ display: "flex", justifyContent: "space-around", margin: "1rem" }}>
         <Input
-          type="text"
+          type="number"
           name="id_categoria"
           placeholder="ID de Categoría"
           value={categoriaSeleccionada?.id_categoria?.toString() || ""}
@@ -81,12 +101,20 @@ const EditarCategoria: React.FC<EditarCategoriaProps> = ({ categorias, setCatego
 
       {categoriaSeleccionada && (
         <FormularioUniversal
-          titulo="Editar Categoría"
+          titulo=""
           campos={[
-            { nombre: "nombre", tipo: "text", etiqueta: "Nombre", placeholder: "Nombre de la categoría" },
-            { nombre: "descripcion", tipo: "text", etiqueta: "Descripción", placeholder: "Descripción" },
-            { nombre: "fecha_creacion", tipo: "date", etiqueta: "Fecha de Creación" },
-            { nombre: "fecha_actualizacion", tipo: "date", etiqueta: "Fecha de Actualización" }
+            { nombre: "nombre", tipo: "text", etiqueta: "Nombre", placeholder: "Nombre" },
+            {
+              nombre: "estado",
+              etiqueta: "Estado",
+              tipo: "select",
+              opciones: [
+                { valor: "activo", etiqueta: "Activo" },
+                { valor: "inactivo", etiqueta: "Inactivo" },
+              ],
+            },
+            { nombre: "created_at", tipo: "date", etiqueta: "Fecha de Creación" },
+            { nombre: "updated_at", tipo: "date", etiqueta: "Fecha de Actualización" },
           ]}
           valoresIniciales={categoriaFormateada}
           onChange={handleChange}

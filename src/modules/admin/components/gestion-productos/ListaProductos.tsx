@@ -1,6 +1,6 @@
 import React from "react";
 import { Producto } from "../../types/productos";
-import ProductosTable from "../../../universal/components/tablaproductos-universal";
+import ProductosTable from "./tablaproductos-universal";
 
 // Primero defines el tipo de producto
 interface ListaProductosProps {

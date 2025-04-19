@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Producto } from "../../types/productos";
-import ProductosTable from "../../../universal/components/tablaproductos-universal";
+import ProductosTable from "./tablaproductos-universal";
 import FormularioUniversal from "../../../../components/formulario";
 
 interface BuscarProductoProps {

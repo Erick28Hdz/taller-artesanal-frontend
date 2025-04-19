@@ -1,7 +1,7 @@
 import React from "react";
 import FormularioUniversal from "../../../../components/formulario";
 import Boton from "../../../../components/boton";
-import ProductosTable from "../../../universal/components/tablaproductos-universal";
+import ProductosTable from "./tablaproductos-universal";
 
 interface Props {
   formData: any;

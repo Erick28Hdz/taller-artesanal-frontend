@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Producto } from "../../types/productos";
-import ProductosTable from "../../../universal/components/tablaproductos-universal";
+import ProductosTable from "./tablaproductos-universal";
 import Boton from "../../../../components/boton";
 import Input from "../../../../components/input";
 

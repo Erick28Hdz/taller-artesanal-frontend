@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Categoria } from "../../types/categoria";
-import CategoriasTable from "../../../universal/components/tablacategorias-universal";
+import CategoriasTable from "./tablacategorias-universal";
 import FormularioUniversal from "../../../../components/formulario";
 
 interface BuscarCategoriaProps {
@@ -20,7 +20,6 @@ const BuscarCategoria: React.FC<BuscarCategoriaProps> = ({
     id_categoria: "",
     nombre: "",
     estado: "",
-    categoria_padre_id: "",
     fecha_creacion: "",
     fecha_actualizacion: "",
   });
@@ -45,20 +44,42 @@ const BuscarCategoria: React.FC<BuscarCategoriaProps> = ({
       return Object.entries(nuevosValores).every(([clave, valor]) => {
         if (!valor) return true;
 
-        const datoCategoria = (categoria as any)[clave];
+        const dato = (categoria as any)[clave];
 
+        // Lógica para fechas
         if (clave === "fecha_creacion" || clave === "fecha_actualizacion") {
-          if (!datoCategoria) return false;
+          if (!dato || !valor) return false;
 
-          const fecha = typeof datoCategoria === "string" ? new Date(datoCategoria) : datoCategoria;
-          const fechaFormateada = fecha.toISOString().split("T")[0];
+          const normalizarFecha = (fechaStr: string) => {
+            if (fechaStr.includes("/")) {
+              const [dia, mes, anio] = fechaStr.split("/");
+              return `${anio}-${mes.padStart(2, "0")}-${dia.padStart(2, "0")}`;
+            }
 
-          return fechaFormateada === valor;
+            if (fechaStr.includes("-")) {
+              const partes = fechaStr.split("-");
+              if (partes[0].length === 4) return fechaStr; // formato YYYY-MM-DD
+            }
+
+            try {
+              const fechaISO = new Date(fechaStr).toISOString().split("T")[0];
+              return fechaISO;
+            } catch {
+              return "";
+            }
+          };
+
+          const fechaCategoriaNormalizada = normalizarFecha(String(dato));
+          const valorFiltro = valor; // tipo YYYY-MM-DD
+
+          return fechaCategoriaNormalizada === valorFiltro;
         }
 
-        return normalizar(datoCategoria || "").includes(normalizar(valor));
+        // Comparación normal para los demás campos
+        return normalizar(dato || "").includes(normalizar(valor));
       });
     });
+
 
     setCategoriasFiltradas(filtradas);
   };
@@ -70,28 +91,27 @@ const BuscarCategoria: React.FC<BuscarCategoriaProps> = ({
       {error && <p>Error: {error}</p>}
 
       <FormularioUniversal
-        titulo="Filtrar Categorías"
+        titulo=""
         campos={[
-          { nombre: "id_categoria", tipo: "text", etiqueta: "ID de Categoría", placeholder: "ID" },
+          { nombre: "id_categoria", tipo: "text", etiqueta: "ID Categoría", placeholder: "ID de categoría" },
           { nombre: "nombre", tipo: "text", etiqueta: "Nombre", placeholder: "Nombre de la categoría" },
           {
             nombre: "estado",
             tipo: "select",
             etiqueta: "Estado",
             opciones: [
-              { valor: "", etiqueta: "Selecciona un estado" },
+              { valor: "", etiqueta: "Todos" },
               { valor: "activo", etiqueta: "Activo" },
               { valor: "inactivo", etiqueta: "Inactivo" },
             ],
           },
-          { nombre: "categoria_padre_id", tipo: "number", etiqueta: "ID Categoría Padre", placeholder: "ID padre" },
           { nombre: "fecha_creacion", tipo: "date", etiqueta: "Fecha de Creación" },
           { nombre: "fecha_actualizacion", tipo: "date", etiqueta: "Fecha de Actualización" },
         ]}
         valoresIniciales={valoresFormulario}
         onChange={handleChange}
         onSubmit={(data) => {
-          console.log("Datos enviados para búsqueda:", data);
+          console.log("Datos enviados:", data);
         }}
       />
 

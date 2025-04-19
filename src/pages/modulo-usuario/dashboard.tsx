@@ -4,8 +4,9 @@ import "../../css/modulo-usuario/dashboard.css";
 import Dropdown from "react-bootstrap/Dropdown";
 import PanelPrincipal from "../../modules/admin/components/panel-principal";
 import GestionCategorias from "../../modules/admin/components/gestion-categorias/gestion-categorias";
+import GestionSubcategorias from "../../modules/admin/components/gestion-subcategoria/gestion-subcategoria";
 import GestionProductos from "../../modules/admin/components/gestion-productos/gestion-productos";
-import GestionPedidos from "../../modules/admin/components/gestion-pedidos";
+import GestionPedidos from "../../modules/admin/components/gestion-pedidos/gestion-pedidos";
 import GestionUsuarios from "../../modules/admin/components/gestion-usuarios/gestion-usuarios";
 import GestionVendedores from "../../modules/admin/components/gestion-vendedores/gestion-vendedores";
 import GestionEstadisticas from "../../modules/admin/components/estadisticas";
@@ -17,6 +18,7 @@ import Marketing from "../../modules/admin/components/marketing";
 // Definir tipos para las secciones
 type SectionKey = "productos" | "pedidos" | "graficos" | "usuarios" | "ganancias";
 type CategoriaKey = "categorias" | "nuevacategoria" | "editarcategoria" | "eliminarcategoria";
+type SubcategoriaKey = "subcategorias" | "nuevsubcategoria" | "editarsubcategoria" | "eliminarsubcategoria" | "buscarsubcategoria";
 type ProductoKey = "lista" | "nuevo" | "editar" | "eliminar" | "buscar";
 type PedidoKey = "pedidos" | "estadopedido" | "detallepedido" | "cancelarpedido";
 type UsuarioKey = "listaUsuarios" | "asignarRoles" | "detallesUsuario" | "editarUsuario" | "eliminarUsuario";
@@ -30,6 +32,7 @@ type MarketingKey = "marketingoptimizacion" | "marketingredes" | "marketingautom
 const Dashboard = () => {
   const [selectedSection, setSelectedSection] = useState<SectionKey | null>(null);
   const [selectedCategoria, setSelectedCategoria] = useState<CategoriaKey | null>(null);
+  const [selectedSubcategoria, setSelectedSubcategoria] = useState<SubcategoriaKey | null>(null);
   const [selectedProducto, setSelectedProducto] = useState<ProductoKey | null>(null);
   const [selectedPedido, setSelectedPedido] = useState<PedidoKey | null>(null);
   const [selectedUsuario, setSelectedUsuario] = useState<UsuarioKey | null>(null);
@@ -69,6 +72,21 @@ const Dashboard = () => {
     setSelectedConfiguracion(null);
     setSelectedMarketing(null);
   };
+
+  // Función para manejar la selección de subcategorías
+  const handleSelectSubcategoria = (key: SubcategoriaKey) => { setSelectedSubcategoria(key);
+    setSelectedSection(null);
+    setSelectedCategoria(null);
+    setSelectedProducto(null);
+    setSelectedPedido(null);
+    setSelectedUsuario(null);
+    setSelectedVendedor(null);
+    setSelectedEstadisticas(null);
+    setSelectedOfertas(null);
+    setSelectedSoporte(null);
+    setSelectedConfiguracion(null);
+    setSelectedMarketing(null);
+  }
 
   // Función para manejar la selección de productos
   const handleSelectProducto = (key: ProductoKey) => {
@@ -265,6 +283,19 @@ const Dashboard = () => {
           </Dropdown>
 
           <Dropdown>
+            <Dropdown.Toggle variant="success" id="dropdown-subcategorias">
+              📂 Gestión de Subcategorías
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              {["subcategorias", "nuevsubcategoria", "editarsubcategoria", "eliminarsubcategoria", "buscarsubcategoria"].map((key) => (
+                <Dropdown.Item key={key} onClick={() => handleSelectSubcategoria(key as SubcategoriaKey)}>
+                  {key.charAt(0).toUpperCase() + key.slice(1)}
+                </Dropdown.Item>
+              ))}
+            </Dropdown.Menu>
+          </Dropdown>
+
+          <Dropdown>
             <Dropdown.Toggle variant="success" id="dropdown-productos">
               🛒 Gestión de Productos
             </Dropdown.Toggle>
@@ -351,9 +382,11 @@ const Dashboard = () => {
         ) : selectedProducto ? (
           <GestionProductos />
         ) : selectedPedido ? (
-          <GestionPedidos selectedPedido={selectedPedido} />
+          <GestionPedidos />
         ) : selectedCategoria ? (
           <GestionCategorias />
+        ) : selectedSubcategoria ? (
+          <GestionSubcategorias /> 
         ) : selectedVendedor ? (
           <GestionVendedores />
         ) : selectedEstadisticas ? (

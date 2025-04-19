@@ -1,6 +1,6 @@
 import React from "react";
 import { Usuario } from "../../types/usuario";
-import UsuariosTable from "../../../universal/components/tablausuarios-universal";
+import UsuariosTable from "./tablausuarios-universal";
 
 // Primero defines el tipo de usuario
 interface ListaUsuariosProps {

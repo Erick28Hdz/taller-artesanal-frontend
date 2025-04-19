@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Usuario } from "../../types/usuario";
-import UsuariosTable from "../../../universal/components/tablausuarios-universal";
+import UsuariosTable from "./tablausuarios-universal";
 import FormularioUniversal from "../../../../components/formulario";
 
 interface BuscarUsuarioProps {
@@ -58,15 +58,32 @@ const BuscarUsuario: React.FC<BuscarUsuarioProps> = ({ usuarios, setUsuarios, lo
                 }
 
                 if (clave === "fecha_nacimiento") {
-                    if (!datoUsuario) return false;
+                    if (!datoUsuario || !valor) return false;
 
-                    // Asegurar que sea tipo Date, incluso si viene como string
-                    const fecha = typeof datoUsuario === "string" ? new Date(datoUsuario) : datoUsuario;
-                    const fechaFormateada = fecha.toISOString().split("T")[0]; // "YYYY-MM-DD"
+                    const normalizarFecha = (fechaStr: string) => {
+                        // Intenta convertir formatos como "15/08/1995" a "1995-08-15"
+                        if (fechaStr.includes("/")) {
+                            const [dia, mes, anio] = fechaStr.split("/");
+                            return `${anio}-${mes.padStart(2, "0")}-${dia.padStart(2, "0")}`;
+                        }
 
-                    return fechaFormateada === valor; // valor también es "YYYY-MM-DD"
+                        if (fechaStr.includes("-")) {
+                            const partes = fechaStr.split("-");
+                            // Si ya es tipo "YYYY-MM-DD"
+                            if (partes[0].length === 4) return fechaStr;
+                        }
+
+                        return ""; // formato desconocido
+                    };
+
+                    const fechaUsuarioNormalizada = normalizarFecha(String(datoUsuario));
+                    const valorFiltro = valor; // ya viene como YYYY-MM-DD desde input type="date"
+
+                    console.log("fecha usuario:", fechaUsuarioNormalizada);
+                    console.log("filtro:", valorFiltro);
+
+                    return fechaUsuarioNormalizada === valorFiltro;
                 }
-
                 return normalizar(datoUsuario || "").includes(normalizar(valor));
             });
         });
@@ -81,9 +98,21 @@ const BuscarUsuario: React.FC<BuscarUsuarioProps> = ({ usuarios, setUsuarios, lo
             {error && <p>Error: {error}</p>}
 
             <FormularioUniversal
-                titulo="Filtrar Usuarios"
+                titulo=""
                 campos={[
                     { nombre: "id_usuario", tipo: "text", etiqueta: "ID de Usuario", placeholder: "ID de Usuario" },
+                    {
+                        nombre: "rol",
+                        tipo: "select",
+                        etiqueta: "Rol",
+                        opciones: [
+                            { valor: "Admin", etiqueta: "Admin" },
+                            { valor: "cliente", etiqueta: "Cliente" },
+                            { valor: "Moderador", etiqueta: "Moderador" },
+                            { valor: "Soporte", etiqueta: "Soporte" },
+                            { valor: "Vendedor", etiqueta: "Vendedor" }
+                        ]
+                    },
                     { nombre: "nombre", tipo: "text", etiqueta: "Nombre", placeholder: "Nombre" }, // funcional
                     { nombre: "apellido", tipo: "text", etiqueta: "Apellido", placeholder: "Apellido" }, //funcional
                     {
@@ -108,18 +137,7 @@ const BuscarUsuario: React.FC<BuscarUsuarioProps> = ({ usuarios, setUsuarios, lo
                     { nombre: "codigo_postal", tipo: "text", etiqueta: "Código Postal", placeholder: "Código Postal" }, //funcional
                     { nombre: "fecha_creacion", tipo: "date", etiqueta: "Fecha de Creación", placeholder: "Fecha de creación" }, //funcional
                     { nombre: "fecha_actualizacion", tipo: "date", etiqueta: "Fecha de Actualización", placeholder: "Fecha de actualización" }, //funcional
-                    {
-                        nombre: "rol",
-                        tipo: "select",
-                        etiqueta: "Rol",
-                        opciones: [
-                            { valor: "Admin", etiqueta: "Admin" },
-                            { valor: "cliente", etiqueta: "Cliente" },
-                            { valor: "Moderador", etiqueta: "Moderador" },
-                            { valor: "Soporte", etiqueta: "Soporte" },
-                            { valor: "Vendedor", etiqueta: "Vendedor" }
-                        ]
-                    }, //funcional
+                    //funcional
                 ]}
 
                 valoresIniciales={valoresFormulario}

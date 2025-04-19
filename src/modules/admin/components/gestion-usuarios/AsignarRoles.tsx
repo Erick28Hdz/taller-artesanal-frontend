@@ -1,5 +1,5 @@
 import React from "react";
-import RolesTable from "../../../universal/components/tablaroles-universal";
+import RolesTable from "./tablaroles-universal";
 
 interface AsignarRolesProps {
   roles: { id_rol: number; nombre: string; descripcion: string }[]; // Asegúrate de que los roles estén disponibles aquí

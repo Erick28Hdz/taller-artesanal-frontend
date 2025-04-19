@@ -1,14 +1,15 @@
 import React from "react";
 import FormularioUniversal from "../../../../components/formulario";
 import Boton from "../../../../components/boton";
-import CategoriasTable from "../../../universal/components/tablacategorias-universal";
+import CategoriasTable from "./tablacategorias-universal";
 import { Categoria } from "../../types/categoria";
 
 interface Props {
   formData: Partial<Categoria>;
   setFormData: (data: Partial<Categoria>) => void;
-  handleAgregarCategoria: (data: Partial<Categoria>) => void;
+  handleAgregarCategoria: (data: Partial<Categoria>) => void; // ya no se usa, pero se mantiene por compatibilidad
   categorias: Categoria[];
+  subcategorias: any[]; // Puedes definir este tipo mejor más adelante
   setCategorias: React.Dispatch<React.SetStateAction<Categoria[]>>;
   loading: boolean;
   error: string | null;
@@ -17,8 +18,9 @@ interface Props {
 const AgregarCategoria: React.FC<Props> = ({
   formData,
   setFormData,
-  handleAgregarCategoria,
   categorias,
+  subcategorias,
+  setCategorias,
   loading,
   error,
 }) => {
@@ -30,15 +32,40 @@ const AgregarCategoria: React.FC<Props> = ({
     });
   };
 
+
+  // Simular guardar categoría con ID y fechas
+  const handleAgregarCategoria = async (data: Partial<Categoria>) => {
+    try {
+      const response = await fetch("http://localhost:3000/api/categorias", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+  
+      if (!response.ok) {
+        throw new Error("Error al agregar la categoría");
+      }
+  
+      const nuevaCategoria = await response.json();
+  
+      // Actualiza el estado con la nueva categoría
+      setCategorias((prev) => [...prev, nuevaCategoria]);
+      setFormData({});
+      alert("✅ Categoría agregada con éxito");
+    } catch (error) {
+      console.error(error);
+      alert("❌ No se pudo agregar la categoría");
+    }
+  };
   return (
     <>
       <h3>➕ Agregar Categoría</h3>
-      <p>Categorías registradas: {categorias.length}</p>
-
       <FormularioUniversal
-        titulo="Agregar Nueva Categoría"
+        titulo=""
         campos={[
-          { nombre: "nombre", etiqueta: "Nombre de la Categoría", tipo: "text" },
+          { nombre: "nombre", etiqueta: "Nombre categoría", tipo: "text" },
           {
             nombre: "estado",
             etiqueta: "Estado",
@@ -47,11 +74,6 @@ const AgregarCategoria: React.FC<Props> = ({
               { valor: "activo", etiqueta: "Activo" },
               { valor: "inactivo", etiqueta: "Inactivo" },
             ],
-          },
-          {
-            nombre: "categoria_padre_id",
-            etiqueta: "ID de Categoría Padre (opcional)",
-            tipo: "number",
           },
         ]}
         valoresIniciales={formData}
@@ -65,6 +87,8 @@ const AgregarCategoria: React.FC<Props> = ({
       </div>
 
       <CategoriasTable categorias={categorias} loading={loading} error={error} />
+      <br />
+      <p>Categorías registradas: {categorias.length}</p>
     </>
   );
 };
