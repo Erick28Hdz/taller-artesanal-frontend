@@ -63,6 +63,7 @@ const AgregarSubcategoria: React.FC<Props> = ({
       categoria: {
         id_categoria: Number(data.id_categoria),
       },
+      
       created_at: normalizarFechaHora(),
       updated_at: normalizarFechaHora(),
     };

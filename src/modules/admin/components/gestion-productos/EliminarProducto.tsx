@@ -24,18 +24,24 @@ const EliminarProducto: React.FC<EliminarProductoProps> = ({ productos, setProdu
     if (!confirmacion) return;
 
     try {
-      // Aquí puedes hacer una petición DELETE o PATCH a tu backend
-      console.log("Eliminando producto:", productoSeleccionado);
+      const response = await fetch(`http://localhost:3000/api/productos/${productoSeleccionado.id_producto}`, {
+        method: "DELETE",
+      });
 
-      // Simulación de eliminación (filtrando el producto del estado)
+      if (!response.ok) {
+        throw new Error("No se pudo eliminar el producto.");
+      }
+
+      // Actualizamos el estado eliminando el producto
       setProductos((prev) =>
         prev.filter((p) => p.id_producto !== productoSeleccionado.id_producto)
       );
 
       setProductoSeleccionado(null); // Limpiar selección
-
+      alert("✅ Producto eliminado correctamente.");
     } catch (err) {
       console.error("Error al eliminar producto:", err);
+      alert("❌ Ocurrió un error al eliminar el producto.");
     }
   };
 

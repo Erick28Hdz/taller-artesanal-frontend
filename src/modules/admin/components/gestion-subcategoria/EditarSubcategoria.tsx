@@ -92,10 +92,6 @@ const EditarSubcategoria: React.FC<EditarSubcategoriaProps> = ({
     }
   };
   
-  
-  
-  
-
   const subcategoriaFormateada = subcategoriaSeleccionada
     ? {
         ...subcategoriaSeleccionada,

@@ -1,4 +1,3 @@
-// EliminarSubcategoria.tsx
 import React, { useState } from "react";
 import { Subcategoria } from "../../types/subcategoria";
 import SubcategoriasTable from "./tablasubcategoria";
@@ -32,17 +31,29 @@ const EliminarSubcategoria: React.FC<EliminarSubcategoriaProps> = ({
     if (!confirmacion) return;
 
     try {
-      // Aquí puedes conectar tu API para eliminarla de verdad
-      console.log("Eliminando subcategoría:", subcategoriaSeleccionada);
+      // Realizamos la llamada DELETE al servidor
+      const response = await fetch(
+        `http://localhost:3000/api/subcategorias/${subcategoriaSeleccionada.id_subcategoria}`,
+        {
+          method: "DELETE",
+        }
+      );
 
-      // Simulación de eliminación local
+      if (!response.ok) {
+        throw new Error("Error al eliminar la subcategoría");
+      }
+
+      // Elimina la subcategoría localmente si todo salió bien
       setSubcategorias((prev) =>
         prev.filter((s) => s.id_subcategoria !== subcategoriaSeleccionada.id_subcategoria)
       );
 
       setSubcategoriaSeleccionada(null); // Limpiar selección
+
+      alert("✅ Subcategoría eliminada correctamente.");
     } catch (err) {
       console.error("Error al eliminar subcategoría:", err);
+      alert("❌ No se pudo eliminar la subcategoría.");
     }
   };
 

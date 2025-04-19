@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Producto } from "../../types/productos";
+
 import Tabs from "../../../../components/tabs";
 
 import ListaProductos from "./ListaProductos";
@@ -10,6 +11,8 @@ import BuscarProducto from "./BusquedaProducto";
 
 const GestionProductos: React.FC = () => {
   const [productos, setProductos] = useState<Producto[]>([]);
+  const [categorias, setCategorias] = useState<any[]>([]); // Cambiar a un tipo de dato adecuado para tu estructura
+  const [subcategorias, setSubcategorias] = useState<any[]>([]); // Cambiar a
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [formData, setFormData] = useState<any>({});
@@ -22,17 +25,28 @@ const GestionProductos: React.FC = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:3000/api/productos")
-      .then((res) => {
-        if (!res.ok) throw new Error("Error al obtener los productos");
-        return res.json();
-      })
-      .then((productosData) => {
+
+    const fetchProductos = fetch("http://localhost:3000/api/productos").then((res) =>
+      res.ok ? res.json() : Promise.reject("Error al obtener productos")
+    );
+
+    const fetchCategorias = fetch("http://localhost:3000/api/categorias").then((res) =>
+      res.ok ? res.json() : Promise.reject("Error al obtener categorías")
+    );
+
+    const fetchSubcategorias = fetch("http://localhost:3000/api/subcategorias").then((res) =>
+      res.ok ? res.json() : Promise.reject("Error al obtener subcategorías")
+    );
+
+    Promise.all([fetchProductos, fetchCategorias, fetchSubcategorias])
+      .then(([productosData, categoriasData, subcategoriasData]) => {
         setProductos(productosData);
+        setCategorias(categoriasData);
+        setSubcategorias(subcategoriasData);
         setLoading(false);
       })
       .catch((err) => {
-        setError(err.message);
+        setError(err.message || err);
         setLoading(false);
       });
   }, []);
@@ -69,6 +83,8 @@ const GestionProductos: React.FC = () => {
               setProductos={setProductos}
               loading={loading}
               error={error}
+              categorias={categorias}
+              subcategorias={subcategorias}
             />
             <br />
           </div>
@@ -78,7 +94,14 @@ const GestionProductos: React.FC = () => {
       {tabSeleccionado === "Busqueda" && (
         <section className="dashboard-cards">
           <div className="card-admin">
-            <BuscarProducto productos={productos} setProductos={setProductos} loading={loading} error={error} />
+            <BuscarProducto
+              productos={productos}
+              setProductos={setProductos}
+              categorias={categorias} // Asegúrate que esto existe
+              subcategorias={subcategorias} // También esto
+              loading={loading}
+              error={error}
+            />
             <br />
           </div>
         </section>
@@ -87,7 +110,14 @@ const GestionProductos: React.FC = () => {
       {tabSeleccionado === "Editar" && (
         <section className="dashboard-cards">
           <div className="card-admin">
-            <EditarProducto productos={productos} setProductos={setProductos} loading={loading} error={error} />
+            <EditarProducto
+              productos={productos}
+              setProductos={setProductos}
+              categorias={categorias}
+              subcategorias={subcategorias}
+              loading={loading}
+              error={error}
+            />
             <br />
           </div>
         </section>
